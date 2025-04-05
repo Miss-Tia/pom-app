@@ -1,10 +1,43 @@
+# Ignore bundler config.
+/.bundle
+
+# Ignore all environment files.
+/env*
+/.env
+
+# Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
+!/log/.keep
+!/tmp/.keep
+
+# Ignore pidfiles, but keep the directory.
+/tmp/pids/*
+!/tmp/pids/
+!/tmp/pids/.keep
+
+# Ignore storage (uploaded files in development and any SQLite databases).
+/storage/*
+!/storage/.keep
+/tmp/storage/*
+!/tmp/storage/
+!/tmp/storage/.keep
+
+/public/assets
+
+# Ignore node modules
 /node_modules
-/.bundle
-/.byebug_history
+
+# Ignore coverage reports
 /coverage/
+
+# Ignore database files but keep schema
 /db/*.sqlite3
 !/db/schema.rb
-/public/assets
+
+# Ignore byebug history
+/.byebug_history
 .byebug_history
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
