@@ -1,0 +1,10 @@
+/log/*
+/tmp/*
+/node_modules
+/.bundle
+/.byebug_history
+/coverage/
+/db/*.sqlite3
+!/db/schema.rb
+/public/assets
+.byebug_history
