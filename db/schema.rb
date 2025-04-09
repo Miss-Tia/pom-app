@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_05_033843) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_09_034052) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -59,7 +59,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_05_033843) do
     t.text "ingredients"
     t.text "instructions"
     t.integer "user_id", null: false
-    t.integer "journal_entry_id", null: false
+    t.integer "journal_entry_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["journal_entry_id"], name: "index_recipes_on_journal_entry_id"
@@ -72,6 +72,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_05_033843) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
   end
 
   add_foreign_key "gardens", "users"
