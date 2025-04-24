@@ -345,3 +345,5 @@ FOREIGN KEY ("journal_entry_id")
   [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='PomApp'*/[0m
   [1m[36mRecipe Create (0.4ms)[0m  [1m[32mINSERT INTO "recipes" ("title", "description", "ingredients", "instructions", "user_id", "journal_entry_id", "created_at", "updated_at") VALUES ('Simple Salad', 'A fresh and quick salad.', 'Lettuce, tomato, cucumber', 'Chop everything and mix.', 1, NULL, '2025-04-09 03:55:41.174281', '2025-04-09 03:55:41.174281') RETURNING "id" /*application='PomApp'*/[0m
   [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='PomApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='PomApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='PomApp'*/[0m
