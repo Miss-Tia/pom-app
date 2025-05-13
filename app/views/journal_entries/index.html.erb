@@ -1,0 +1,15 @@
+<h1>My Journal</h1>
+
+<% if @journal_entries.any? %>
+  <ul>
+    <% @journal_entries.each do |entry| %>
+      <li>
+        <strong><%= link_to entry.title, journal_entry_path(entry) %></strong><br>
+        <em><%= entry.created_at.strftime("%B %d, %Y") %></em>
+        <small><%= entry.category.name if entry.category %></small>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>You haven't added any journal entries yet.</p>
+<% end %>
