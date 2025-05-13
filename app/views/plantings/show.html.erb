@@ -1,0 +1,11 @@
+<h1><%= @planting.plant.name %></h1>
+
+<p><strong>Location:</strong> <%= @planting.garden.name %></p>
+<p><strong>Date Planted:</strong> <%= @planting.date_planted.strftime("%B %d, %Y") %></p>
+<p><strong>Season:</strong> <%= @planting.season %></p>
+
+<% if @planting.notes.present? %>
+  <p><strong>Notes:</strong> <%= @planting.notes %></p>
+<% end %>
+
+<p><%= link_to "Back to all plantings", plantings_path %></p>
