@@ -1,0 +1,10 @@
+<h1>My Recipes</h1>
+
+<ul>
+  <% @recipes.each do |recipe| %>
+    <li>
+      <strong><%= link_to recipe.title, recipe_path(recipe) %></strong><br>
+      <small><%= truncate(recipe.description, length: 100) %></small>
+    </li>
+  <% end %>
+</ul>
