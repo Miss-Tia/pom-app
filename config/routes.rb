@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get "plantings/index"
+  get "plantings/show"
+  get "journal_entries/index"
+  get "journal_entries/show"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -11,4 +15,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  resources :journal_entries, only: [ :index, :show ]
+  resources :recipes, only: [ :index, :show ]
+  resources :plantings, only: [ :index, :show ]
 end

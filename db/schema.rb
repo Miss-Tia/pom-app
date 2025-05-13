@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_09_034052) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_13_053329) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -37,6 +37,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_09_034052) do
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_journal_entries_on_category_id"
     t.index ["user_id"], name: "index_journal_entries_on_user_id"
+  end
+
+  create_table "plantings", force: :cascade do |t|
+    t.integer "plant_id", null: false
+    t.integer "garden_id", null: false
+    t.date "date_planted"
+    t.text "notes"
+    t.string "season"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "location"
+    t.index ["garden_id"], name: "index_plantings_on_garden_id"
+    t.index ["plant_id"], name: "index_plantings_on_plant_id"
   end
 
   create_table "plants", force: :cascade do |t|
@@ -78,6 +91,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_09_034052) do
   add_foreign_key "gardens", "users"
   add_foreign_key "journal_entries", "categories"
   add_foreign_key "journal_entries", "users"
+  add_foreign_key "plantings", "gardens"
+  add_foreign_key "plantings", "plants"
   add_foreign_key "plants", "gardens"
   add_foreign_key "recipes", "journal_entries"
   add_foreign_key "recipes", "users"

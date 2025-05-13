@@ -1,0 +1,10 @@
+<h1>My Plantings</h1>
+
+<ul>
+  <% @plantings.each do |planting| %>
+    <li>
+      <strong><%= link_to planting.plant.name, planting_path(planting) %></strong><br>
+      Planted in <%= planting.garden.name %> on <%= planting.date_planted.strftime("%B %d, %Y") %>
+    </li>
+  <% end %>
+</ul>
