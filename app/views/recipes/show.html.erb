@@ -1,0 +1,11 @@
+<h1><%= @recipe.title %></h1>
+
+<p><strong>Description:</strong> <%= @recipe.description %></p>
+
+<h3>Ingredients</h3>
+<p><%= simple_format(@recipe.ingredients) %></p>
+
+<h3>Instructions</h3>
+<p><%= simple_format(@recipe.instructions) %></p>
+
+<%= link_to "Back to recipes", recipes_path %>
