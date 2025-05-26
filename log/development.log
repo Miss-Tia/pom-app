@@ -348,8 +348,11 @@ FOREIGN KEY ("journal_entry_id")
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> main
+=======
+>>>>>>> fc8a7e50fea5db711bf1a64f933c4ef3dc1e8f24
   [1m[36mActiveRecord::SchemaMigration Load (2.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='PomApp'*/[0m
   [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='PomApp'*/[0m
   [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='PomApp'*/[0m
@@ -3144,11 +3147,15 @@ Completed 200 OK in 167ms (Views: 124.6ms | ActiveRecord: 2.7ms (3 queries, 0 ca
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> fc8a7e50fea5db711bf1a64f933c4ef3dc1e8f24
 >>>>>>> d161e1f (Lesson 8: GET routes and views for journal entries, recipes, and plantings)
   [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='PomApp'*/[0m
   [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='PomApp'*/[0m
   [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='PomApp'*/[0m
+<<<<<<< HEAD
 >>>>>>> main
   [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='PomApp'*/[0m
   [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='PomApp'*/[0m
@@ -6659,3 +6666,5 @@ Processing by PlantingsController#show as HTML
 Completed 200 OK in 53ms (Views: 7.5ms | ActiveRecord: 0.4ms (3 queries, 0 cached) | GC: 0.0ms)
 
 
+=======
+>>>>>>> fc8a7e50fea5db711bf1a64f933c4ef3dc1e8f24

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # spec/requests/plantings_spec.rb
 
 require 'rails_helper'
@@ -17,6 +18,27 @@ RSpec.describe "Plantings", type: :request do
         notes: "Test notes"
       )
 
+=======
+require 'rails_helper'
+
+RSpec.describe "Plantings", type: :request do
+  let(:user) { User.first || User.create!(first_name: "Tia", last_name: "Anderson", email: "tia@example.com") }
+  let(:garden) { Garden.first || Garden.create!(name: "Test Garden", location: "Backyard", user: user) }
+  let(:plant) { Plant.first || Plant.create!(name: "Tomato", variety: "Cherry", garden: garden) }
+
+  before do
+    Planting.create!(
+      garden: garden,
+      plant: plant,
+      date_planted: Date.today,
+      season: "Spring",
+      notes: "Test notes"
+    )
+  end
+
+  describe "GET /plantings" do
+    it "returns http success" do
+>>>>>>> fc8a7e50fea5db711bf1a64f933c4ef3dc1e8f24
       get plantings_path
       expect(response).to have_http_status(:success)
     end
@@ -24,6 +46,7 @@ RSpec.describe "Plantings", type: :request do
 
   describe "GET /plantings/:id" do
     it "returns http success" do
+<<<<<<< HEAD
       planting = Planting.create!(
         garden: garden,
         plant: plant,
@@ -32,10 +55,14 @@ RSpec.describe "Plantings", type: :request do
         notes: "Test notes"
       )
 
+=======
+      planting = Planting.first
+>>>>>>> fc8a7e50fea5db711bf1a64f933c4ef3dc1e8f24
       get planting_path(planting)
       expect(response).to have_http_status(:success)
     end
   end
+<<<<<<< HEAD
 
   describe "POST /plantings" do
     context "with valid parameters" do
@@ -114,4 +141,6 @@ RSpec.describe "Plantings", type: :request do
       end
     end
   end
+=======
+>>>>>>> fc8a7e50fea5db711bf1a64f933c4ef3dc1e8f24
 end

@@ -3,7 +3,7 @@ class PlantingsController < ApplicationController
   before_action :set_planting, only: [ :show, :edit, :update ]
 
   def index
-    @plantings = Planting.all
+    @plantings = Planting.includes(:plant, :garden)
   end
 
   def show
