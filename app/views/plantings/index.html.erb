@@ -1,10 +1,15 @@
+<!-- app/views/plantings/index.html.erb -->
 <h1>My Plantings</h1>
+
+<p><%= link_to "New Planting", new_planting_path, class: "button" %></p>
 
 <ul>
   <% @plantings.each do |planting| %>
     <li>
       <strong><%= link_to planting.plant.name, planting_path(planting) %></strong><br>
-      Planted in <%= planting.garden.name %> on <%= planting.date_planted.strftime("%B %d, %Y") %>
+      Planted in <%= planting.garden.name %> on <%= planting.date_planted.strftime("%B %d, %Y") %><br>
+      <%= link_to "Edit", edit_planting_path(planting) %> |
+      <%= link_to "Delete", planting_path(planting), method: :delete, data: { confirm: "Are you sure?" } %>
     </li>
   <% end %>
 </ul>
