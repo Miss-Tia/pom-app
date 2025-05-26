@@ -1,0 +1,43 @@
+<%= form_with model: planting, local: true do |form| %>
+  <% if planting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(planting.errors.count, "error") %> prevented this planting from being saved:</h2>
+      <ul>
+        <% planting.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :plant_id, "Plant" %><br>
+    <%= form.collection_select :plant_id, Plant.all, :id, :name, prompt: "Select a plant" %>
+  </div>
+
+  <div>
+    <%= form.label :garden_id, "Garden" %><br>
+    <%= form.collection_select :garden_id, Garden.all, :id, :name, prompt: "Select a garden" %>
+  </div>
+
+  <div>
+    <%= form.label :date_planted, "Date Planted" %><br>
+    <%= form.date_field :date_planted %>
+  </div>
+
+  <div>
+    <%= form.label :season %><br>
+    <%= form.select :season, ["Spring", "Summer", "Fall", "Winter"], prompt: "Select a season" %>
+  </div>
+
+  <div>
+    <%= form.label :notes %><br>
+    <%= form.text_area :notes, rows: 3 %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+

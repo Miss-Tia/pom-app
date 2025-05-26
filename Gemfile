@@ -59,3 +59,7 @@ end
 group :development, :test do
   gem "rspec-rails", "7.1.1"
 end
+
+group :test do
+  gem "rails-controller-testing"
+end
