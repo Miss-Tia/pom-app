@@ -1,0 +1,23 @@
+<section class="landing-page">
+  <div class="center-logo">
+    <%= image_tag "POM_no_background.png", alt: "POM Logo", class: "pom-logo-large" %>
+  </div>
+
+  <h1 class="tagline">Grow Where You Are Planted</h1>
+
+  <p class="description">
+    A calming space to track your garden, your growth, and your gratitude.<br>
+    Nurture your peace — one entry, one plant, one recipe at a time.
+  </p>
+
+  <div class="landing-buttons">
+  <% if current_user %>
+    <%= link_to "Go to Dashboard", plantings_path, class: "btn primary" %>
+  <% else %>
+    <%= link_to "Log In", login_path, class: "btn primary" %>
+    <%= link_to "Sign Up", signup_path, class: "btn secondary" %>
+
+  <% end %>
+</div>
+</section>
+

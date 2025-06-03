@@ -1,10 +1,251 @@
 /*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
+ *= require_tree .
+ *= require_self
  */
+
+/* =============================
+   Login Page Styles
+   ============================= */
+
+.login-container {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 40px 30px;
+  background-color: #fdf6ef;
+  border: 1px solid #e0dcd5;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  font-family: 'Georgia', serif;
+  text-align: center;
+}
+
+.login-title {
+  font-size: 28px;
+  color: #7d5a63;
+  margin-bottom: 30px;
+}
+
+.login-subtitle {
+  font-size: 16px;
+  color: #7d5a63;
+  margin-bottom: 20px;
+}
+
+.login-form .form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.login-form label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #4b3b2a;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #c7bdb2;
+  border-radius: 6px;
+  background-color: #fffaf5;
+  font-family: 'Georgia', serif;
+  font-size: 16px;
+  color: #4b3b2a;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #8a9a5b;
+  box-shadow: 0 0 4px #8a9a5b66;
+}
+
+.login-btn {
+  background-color: #8a9a5b;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 24px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.login-btn:hover {
+  background-color: #6e7f4d;
+}
+
+.back-link {
+  display: block;
+  margin-top: 20px;
+  color: #b75e35;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+/* =============================
+   Base Typography & Layout
+   ============================= */
+
+body {
+  background-color: #fdf6ef;
+  font-family: 'Georgia', serif;
+  color: #4b3b2a;
+  margin: 0;
+  padding: 0;
+}
+
+/* =============================
+   Header (Navbar) Styles
+   ============================= */
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: #fdf6ef;
+  border-bottom: 1px solid #e0dcd5;
+}
+
+.logo-container .pom-logo {
+  height: 70px;
+}
+
+.nav-auth {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.welcome-text {
+  font-weight: bold;
+  color: #7d5a63;
+}
+
+.btn.login {
+  background-color: #8a9a5b;
+  color: white;
+}
+
+.btn.logout {
+  background-color: #b75e35;
+  color: white;
+}
+
+.btn.login:hover {
+  background-color: #6e7f4d;
+}
+
+.btn.logout:hover {
+  background-color: #934526;
+}
+
+/* =============================
+   Landing Page & Logo Styling
+   ============================= */
+
+.landing-page {
+  text-align: center;
+  padding: 80px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.center-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.pom-logo-large {
+  max-width: 300px;
+  height: auto;
+}
+
+.tagline {
+  font-size: 36px;
+  color: #b75e35;
+  margin-bottom: 24px;
+}
+
+.description {
+  font-size: 18px;
+  color: #7d5a63;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.landing-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* =============================
+   Reusable Button Styles
+   ============================= */
+
+.btn {
+  padding: 12px 28px;
+  border-radius: 24px;
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.btn.primary {
+  background-color: #8a9a5b;
+  color: white;
+}
+
+.btn.primary:hover {
+  background-color: #6e7f4d;
+}
+
+.btn.secondary {
+  background-color: #b0a16e;
+  color: white;
+}
+
+.btn.secondary:hover {
+  background-color: #9d8e5e;
+}
+
+/* =============================
+   Links & Prompts
+   ============================= */
+
+.link-highlight {
+  color: #b75e35;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.link-highlight:hover {
+  text-decoration: underline;
+  color: #934526;
+}
+
+.signup-link,
+.login-redirect {
+  font-size: 14px;
+  color: #7d5a63;
+  margin-top: 20px;
+}
+
+.flash-alert {
+  color: #934526;
+  background-color: #fff4f0;
+  border: 1px solid #f5c6cb;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-align: center;
+}

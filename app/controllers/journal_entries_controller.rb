@@ -1,4 +1,5 @@
 class JournalEntriesController < ApplicationController
+  before_action :require_login
   def index
     @journal_entries = JournalEntry.all
   end
