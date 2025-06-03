@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="icon" href="<%= asset_path('POM_background.png') %>" type="image/png">
+
     <title><%= content_for(:title) || "Pom App" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -23,6 +25,23 @@
   </head>
 
   <body>
-    <%= yield %>
-  </body>
+  <header class="app-header">
+    <div class="logo-container">
+      <%= link_to image_tag("POM_no_background.png", alt: "POM Logo", class: "pom-logo"), root_path %>
+    </div>
+
+    <div class="nav-auth">
+      <% if current_user %>
+        <span class="welcome-text">Welcome, <%= current_user.first_name %>!</span>
+        <%= button_to "Logout", logout_path, method: :delete, class: "btn logout" %>
+      <% else %>
+        <%= link_to "Login", login_path, class: "btn login" %>
+      <% end %>
+    </div>
+  </header>
+
+  <%= yield %>
+</body>
+
+
 </html>

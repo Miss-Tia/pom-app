@@ -1,0 +1,41 @@
+<div class="login-container">
+  <h2 class="login-title">Create Your Account</h2>
+  <p class="login-subtitle">Sign up to begin your Peace of Mind journey 🌱</p>
+<% if flash[:alert] %>
+  <div class="flash-alert"><%= flash[:alert] %></div>
+<% end %>
+
+  <%= form_with model: @user, url: users_path, local: true, class: "login-form" do |form| %>
+    <div class="form-group">
+      <%= form.label :first_name %>
+      <%= form.text_field :first_name, class: "form-input" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :last_name %>
+      <%= form.text_field :last_name, class: "form-input" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :email %>
+      <%= form.email_field :email, class: "form-input" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :password %>
+      <%= form.password_field :password, class: "form-input" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :password_confirmation %>
+      <%= form.password_field :password_confirmation, class: "form-input" %>
+    </div>
+
+    <%= form.submit "Create Account", class: "login-btn" %>
+  <% end %>
+
+  <p class="login-redirect">
+    Already have an account?
+    <%= link_to "Log in", login_path, class: "link-highlight" %>
+  </p>
+</div>

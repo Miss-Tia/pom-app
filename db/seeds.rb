@@ -55,4 +55,14 @@ recipes.each do |data|
     r.instructions = data[:instructions]
   end
 end
+
+puts "👤 Seeding user..."
+
+User.find_or_create_by!(email: "tia@example.com") do |user|
+  user.name = "Tia"
+  user.password = "password"
+  user.password_confirmation = "password"
+end
+
+
 puts '🌱 Seeding complete...'
