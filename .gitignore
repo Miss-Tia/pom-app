@@ -43,3 +43,5 @@
 /config/master.key
 log/*.log
 storage/*.sqlite3
+
+.env

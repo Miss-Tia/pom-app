@@ -1,3 +1,3 @@
 class Plant < ApplicationRecord
-  belongs_to :garden
+  has_many :plantings, dependent: :destroy
 end

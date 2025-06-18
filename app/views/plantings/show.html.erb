@@ -5,7 +5,17 @@
 <p><strong>Season:</strong> <%= @planting.season %></p>
 
 <% if @planting.notes.present? %>
-  <p><strong>Notes:</strong> <%= @planting.notes %></p>
+  <div class="planting-notes">
+    <h3>📝 Notes</h3>
+    <p><%= simple_format(@planting.notes) %></p>
+  </div>
 <% end %>
+<div class="planting-actions">
+  <%= link_to "✏️ Edit", edit_planting_path(@planting), class: "btn btn-small" %>
+  <%= link_to "← Back to plantings", garden_plantings_path(@planting.garden), class: "btn btn-secondary btn-small" %>
+  <%= button_to "🗑️ Delete Planting", planting_path(@planting), method: :delete,
+      data: { confirm: "Are you sure you want to delete this planting? This cannot be undone." },
+      class: "btn btn-danger" %>
 
-<p><%= link_to "Back to all plantings", plantings_path %></p>
+</div>
+

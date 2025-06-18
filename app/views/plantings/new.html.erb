@@ -1,5 +1,5 @@
-<h1>New Planting</h1>
+<h1>🌱 Add a New Planting</h1>
 
-<%= render 'form', planting: @planting %>
+<%= render 'form', planting: @planting, garden: @garden, plants: @plants %>
 
-<p><%= link_to "Back to all plantings", plantings_path %></p>
+<%= link_to "← Back to All Plantings", garden_plantings_path(@garden), class: "btn secondary" %>

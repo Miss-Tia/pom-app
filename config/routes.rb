@@ -1,14 +1,29 @@
-# config/routes.rb
 Rails.application.routes.draw do
-  get "plantings/index"
-  get "plantings/show"
-  get "journal_entries/index"
-  get "journal_entries/show"
+  root "home#index"
 
   get "up" => "rails/health#show", as: :rails_health_check
-  root "plantings#index"
 
-  resources :journal_entries, only: [ :index, :show ]
+  get    "/login",  to: "sessions#new"
+  post   "/login",  to: "sessions#create"
+  delete "/logout", to: "sessions#destroy"
+  get "/signup", to: "users#new", as: "signup"
+
+  post "/generate_prompt", to: "prompts#generate"
+
+
+
+  resources :users, only: [ :new, :create ]
+  resources :dashboards, only: [ :show ]
+
+  resources :journal_entries
   resources :recipes, only: [ :index, :show ]
-  resources :plantings, only: [ :index, :show, :new, :create, :edit, :update ]
+
+  resources :gardens do
+    resources :plantings, only: [ :index, :new, :create ]
+  end
+
+  resources :plants, only: [ :new, :create, :edit, :update, :destroy ]
+
+
+  resources :plantings, only: [ :show, :edit, :update, :destroy ]
 end

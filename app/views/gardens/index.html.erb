@@ -1,0 +1,61 @@
+<div class="dashboard">
+  <h1 class="dashboard-title">Your Gardens</h1>
+
+  <div class="dashboard-cards">
+    <% @gardens.each do |garden| %>
+      <div class="dashboard-card">
+        <%= link_to edit_garden_path(garden), class: "edit-icon", title: "Edit Garden" do %>
+  📝
+<% end %>
+
+        <h2><%= garden.name %></h2> 
+        <p><strong>Location:</strong> <%= garden.location %></p>
+
+        <div class="garden-notes">
+          <p class="notes-preview" id="notes-preview-<%= garden.id %>">
+            <%= truncate(garden.notes, length: 50, separator: ' ', omission: '...') %>
+          </p>
+
+          <p class="notes-full hidden" id="notes-full-<%= garden.id %>">
+            <%= garden.notes %>
+          </p>
+
+          <% if garden.notes.present? && garden.notes.length > 50 %>
+ 
+            <%= link_to "Read more", "#", class: "read-toggle", data: { garden_id: garden.id } %>
+          <% end %>
+        </div>
+
+        <%= link_to "View Plantings", garden_plantings_path(garden), class: "btn btn-view" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="garden-buttons">
+    <%= link_to "Add New Garden", new_garden_path, class: "btn primary" %>
+    <%= link_to "← Back to Dashboard", dashboard_path(current_user), class: "btn secondary" %>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".read-toggle").forEach(link => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const gardenId = link.dataset.gardenId;
+        const preview = document.getElementById(`notes-preview-${gardenId}`);
+        const full = document.getElementById(`notes-full-${gardenId}`);
+
+        if (full.classList.contains("show")) {
+          full.classList.remove("show");
+          preview.style.display = "block";
+          link.textContent = "Read more";
+        } else {
+          full.classList.add("show");
+          preview.style.display = "none";
+          link.textContent = "Read less";
+        }
+      });
+    });
+  });
+</script>

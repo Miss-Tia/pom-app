@@ -1,0 +1,28 @@
+<div class="dashboard">
+  <h1 class="dashboard-title">Welcome back, <%= current_user.first_name %>!</h1>
+  <p class="dashboard-subtitle">What would you like to explore today?</p>
+
+  <div class="dashboard-cards">
+    <div class="dashboard-card">
+      <span class="card-emoji">📝</span>
+      <h2>Journal</h2>
+      <p>Reflect on your day, respond to prompts, or add a gratitude entry.</p>
+      <%= link_to "Go to Journal", journal_entries_path, class: "card-link" %>
+    </div>
+
+    <div class="dashboard-card">
+      <span class="card-emoji">🌿</span>
+      <h2>Gardens</h2>
+      <p>Track your garden and plan your next harvest.</p>
+      <%= link_to "View Gardens", gardens_path, class: "card-link" %>
+    </div>
+
+    <div class="dashboard-card disabled-card">
+      <span class="card-emoji">🍲</span>
+      <h2>Recipes</h2>
+      <p>Keep your favorite dishes and family recipes all in one place.</p>
+      <span class="card-link disabled-link" title="This feature is still growing! 🌱">⏳ Coming Soon!</span>
+
+    </div>
+  </div>
+</div>

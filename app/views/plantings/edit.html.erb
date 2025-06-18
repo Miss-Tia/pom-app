@@ -1,5 +1,6 @@
-<h1>Edit Planting</h1>
+<h1>✏️ Edit Planting</h1>
 
-<%= render 'form', planting: @planting %>
+<%= render 'form', planting: @planting, garden: @garden, plants: @plants %>
 
-<p><%= link_to "Back to all plantings", plantings_path %></p>
+<%= link_to "← Back to Garden", gardens_path, class: "back-link" %>
+

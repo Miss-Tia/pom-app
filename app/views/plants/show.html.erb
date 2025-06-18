@@ -1,0 +1,12 @@
+<h1><%= @plant.name %></h1>
+
+<p><strong>Notes:</strong> <%= @plant.notes %></p>
+<% if @plant.days_to_harvest.present? %>
+  <p><strong>Days to Harvest:</strong> <%= @plant.days_to_harvest %> days</p>
+<% end %>
+
+<div class="entry-actions">
+  <%= link_to "✏️ Edit Plant", edit_plant_path(@plant), class: "btn btn-small" %>
+  <%= link_to "🗑️ Delete Plant", plant_path(@plant), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-small" %>
+  <%= link_to "⬅️ Back", request.referer || dashboard_path(current_user), class: "btn btn-secondary btn-small" %>
+</div>
