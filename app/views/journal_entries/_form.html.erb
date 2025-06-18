@@ -1,0 +1,34 @@
+<%= form_with model: journal_entry, local: true do |form| %>
+  <% if journal_entry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(journal_entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
+      <ul>
+        <% journal_entry.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: "journal_entry_title" %>
+  </div>
+
+  <!-- Prompt generator section -->
+  <div class="form-group" data-controller="prompt">
+    <%= button_tag "✨ Generate Prompt", type: "button", id: "generate-prompt-btn", class: "btn secondary-btn", data: { action: "click->prompt#generate" } %>
+    
+    <%= form.label :prompt, "Prompt (optional)" %>
+    <%= form.text_area :prompt, id: "journal_entry_prompt", rows: 2, class: "form-control", data: { prompt_target: "output" } %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :content %>
+    <%= form.text_area :content, rows: 8 %>
+  </div>
+
+  <div class="form-actions">
+    <%= form.submit "Save Entry", class: "btn primary-btn" %>
+  </div>
+<% end %>

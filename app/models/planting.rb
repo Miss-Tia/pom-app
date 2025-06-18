@@ -2,6 +2,7 @@
 class Planting < ApplicationRecord
   belongs_to :plant
   belongs_to :garden
+  belongs_to :user
 
   validates :plant_id, presence: true
   validates :garden_id, presence: true

@@ -1,25 +1,27 @@
-<h1><%= @journal_entry.title %></h1>
+<div class="journal-show-container">
+  <h1 class="entry-title">
+    <%= @journal_entry.title.presence || "📝 Journal Entry" %>
+  </h1>
 
-<p><strong>Date:</strong> <%= @journal_entry.created_at.strftime("%B %d, %Y") %></p>
+  <p class="entry-date">
+    <strong>Date:</strong> <%= @journal_entry.created_at.strftime("%B %d, %Y") %>
+  </p>
 
-<p><strong>Category:</strong> <%= @journal_entry.category.name if @journal_entry.category %></p>
+  <% if @journal_entry.category.present? %>
+    <p class="entry-category">
+      <strong>Category:</strong> <%= @journal_entry.category.name %>
+    </p>
+  <% end %>
 
-<hr>
+  <hr>
 
-<div>
-  <p><%= simple_format(@journal_entry.content) %></p>
+  <div class="entry-content">
+    <%= simple_format(@journal_entry.content) %>
+  </div>
+
+  <div class="entry-actions">
+    <%= link_to "✏️ Edit Entry", edit_journal_entry_path(@journal_entry), class: "btn btn-small" %>
+    <%= link_to "🗑️ Delete Entry", journal_entry_path(@journal_entry), method: :delete, data: { confirm: "Are you sure you want to delete this entry?" }, class: "btn btn-danger btn-small" %>
+    <%= link_to "⬅️ Back to Journal", journal_entries_path, class: "btn btn-secondary btn-small" %>
+  </div>
 </div>
-
-<%# Tag + Prompt features will be re-enabled later %>
-<%# if @journal_entry.prompt.present? %>
-<%#   <p><strong>Prompt:</strong> <%= @journal_entry.prompt.text %></p> %>
-<%# end %>
-
-<%# if @journal_entry.tags.any? %>
-<%#   <p><strong>Tags:</strong>
-<%#     <%= @journal_entry.tags.map(&:name).join(", ") %>
-<%#   </p> %>
-<%# end %>
-
-
-<p><%= link_to "Back to journal entries", journal_entries_path %></p>

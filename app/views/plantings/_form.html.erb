@@ -1,43 +1,34 @@
-<%= form_with model: planting, local: true do |form| %>
-  <% if planting.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(planting.errors.count, "error") %> prevented this planting from being saved:</h2>
-      <ul>
-        <% planting.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+<div class="journal-form-container">
+  <%= form_with model: journal_entry, local: true do |form| %>
+    <% if journal_entry.errors.any? %>
+      <div class="form-errors">
+        <h2><%= pluralize(journal_entry.errors.count, "error") %> prevented this entry from being saved:</h2>
+        <ul>
+          <% journal_entry.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <h2 class="form-title"><%= journal_entry.persisted? ? "✏️ Edit Journal Entry" : "📝 New Journal Entry" %></h2>
+
+    <div class="form-group">
+      <%= form.label :title %>
+      <%= form.text_field :title, placeholder: "Or leave blank to use a prompt...", class: "form-input" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :content, "Journal Entry" %>
+      <%= form.text_area :content, rows: 10, class: "form-textarea" %>
+    </div>
+
+    <div class="form-actions">
+      <%= form.submit "Save Entry", class: "btn primary-btn" %>
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :plant_id, "Plant" %><br>
-    <%= form.collection_select :plant_id, Plant.all, :id, :name, prompt: "Select a plant" %>
+  <div class="form-actions center">
+    <%= link_to "← Back to Journal", journal_entries_path, class: "btn secondary-btn" %>
   </div>
-
-  <div>
-    <%= form.label :garden_id, "Garden" %><br>
-    <%= form.collection_select :garden_id, Garden.all, :id, :name, prompt: "Select a garden" %>
-  </div>
-
-  <div>
-    <%= form.label :date_planted, "Date Planted" %><br>
-    <%= form.date_field :date_planted %>
-  </div>
-
-  <div>
-    <%= form.label :season %><br>
-    <%= form.select :season, ["Spring", "Summer", "Fall", "Winter"], prompt: "Select a season" %>
-  </div>
-
-  <div>
-    <%= form.label :notes %><br>
-    <%= form.text_area :notes, rows: 3 %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
-
-
+</div>

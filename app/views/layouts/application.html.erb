@@ -1,47 +1,42 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="icon" href="<%= asset_path('POM_background.png') %>" type="image/png">
-
-    <title><%= content_for(:title) || "Pom App" %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
+    <title>Peace of Mind (POM)</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= yield :head %>
-
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
-
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-  <header class="app-header">
-    <div class="logo-container">
-      <%= link_to image_tag("POM_no_background.png", alt: "POM Logo", class: "pom-logo"), root_path %>
-    </div>
+    <header class="app-header">
+      <div class="logo-container">
+        <%= link_to root_path do %>
+        <%= image_tag "pom_background.png", class: "pom-logo", alt: "POM logo" %>
+        <% end %>
+      </div>
 
-    <div class="nav-auth">
-      <% if current_user %>
-        <span class="welcome-text">Welcome, <%= current_user.first_name %>!</span>
-        <%= button_to "Logout", logout_path, method: :delete, class: "btn logout" %>
-      <% else %>
-        <%= link_to "Login", login_path, class: "btn login" %>
+      <% if logged_in? %>
+        <div class="nav-auth">
+          <span class="welcome-text">Welcome, <%= current_user.first_name %>!</span>
+          <%= button_to "Logout", logout_path, method: :delete, class: "btn logout" %>
+        </div>
       <% end %>
-    </div>
-  </header>
+    </header>
 
-  <%= yield %>
-</body>
+    <main>
+      <% flash.each do |type, message| %>
+        <div class="flash <%= type %>"><%= message %></div>
+      <% end %>
 
+      <%= yield %>
+    </main>
 
+    <footer class="app-footer">
+      <p>
+        Made with 💚 by Tia · Peace of Mind (POM) App © <%= Time.now.year %>
+      </p>
+    </footer>
+  </body>
 </html>

@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   has_many :gardens
   has_many :recipes
+  has_many :plantings, through: :gardens
   has_many :journal_entries
 
   validates :first_name, presence: true

@@ -1,0 +1,16 @@
+<div class="dashboard">
+  <h1 class="dashboard-title"><%= @garden.name %></h1>
+
+  <div class="dashboard-cards">
+    <div class="dashboard-card">
+      <p><strong>Location:</strong> <%= @garden.location %></p>
+      <p><strong>Notes:</strong> <%= @garden.notes %></p>
+
+      <%= link_to "🌿 View Plants in This Garden", garden_plantings_path(@garden), class: "card-link" %>
+    </div>
+  </div>
+
+  <div class="garden-buttons">
+    <%= link_to "← Back to Gardens", gardens_path, class: "btn secondary" %>
+  </div>
+</div>

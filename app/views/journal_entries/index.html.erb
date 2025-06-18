@@ -1,15 +1,47 @@
-<h1>My Journal</h1>
+<div class="journal-container">
+  <div class="journal-header-container">
+    <%= link_to "🏠 Dashboard", dashboard_path(current_user), class: "btn journal-nav-btn" %>
 
-<% if @journal_entries.any? %>
-  <ul>
-    <% @journal_entries.each do |entry| %>
-      <li>
-        <strong><%= link_to entry.title, journal_entry_path(entry) %></strong><br>
-        <em><%= entry.created_at.strftime("%B %d, %Y") %></em>
-        <small><%= entry.category.name if entry.category %></small>
-      </li>
+    <h1 class="journal-title">My Journal Entries</h1>
+
+    <%= link_to "➕ New Entry", new_journal_entry_path, class: "btn journal-nav-btn right" %>
+  </div>
+
+  <div class="journal-grid">
+    <% @entries_by_month.each do |month, entries| %>
+      <div class="journal-month">
+        <details>
+          <summary class="month-label"><%= month.strftime("%B %Y") %></summary>
+
+          <div class="month-entries">
+            <% if entries.any? %>
+              <% entries.each do |entry| %>
+                <div class="entry-row">
+                  <p>
+                    <%= link_to entry.title, journal_entry_path(entry), class: "link-highlight" %>
+                    <% if entry.category.present? %>
+                      <span class="entry-category"> – <%= entry.category.name %></span>
+                    <% end %>
+                    <small class="entry-date"><%= entry.created_at.strftime('%B %d, %Y') %></small>
+                  </p>
+
+                  <div class="entry-actions">
+                    <%= link_to "View", journal_entry_path(entry), class: "btn btn-small" %>
+                  </div>
+                </div>
+              <% end %>
+            <% else %>
+              <p class="empty-month-message">No entries this month.</p>
+
+              <% if month >= Time.current.beginning_of_month %>
+                <%= link_to new_journal_entry_path, class: "btn add-entry-btn" do %>
+                  ➕ New Entry
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </details>
+      </div>
     <% end %>
-  </ul>
-<% else %>
-  <p>You haven't added any journal entries yet.</p>
-<% end %>
+  </div>
+</div>
