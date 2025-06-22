@@ -2,15 +2,24 @@
   <h1 class="dashboard-title"><%= @garden.name %></h1>
 
   <div class="dashboard-cards">
-    <div class="dashboard-card">
+    <div class=".garden-show-card">
       <p><strong>Location:</strong> <%= @garden.location %></p>
+      <hr class="section-divider">
       <p><strong>Notes:</strong> <%= @garden.notes %></p>
-
-      <%= link_to "🌿 View Plants in This Garden", garden_plantings_path(@garden), class: "card-link" %>
-    </div>
+ 
+<div class="form-actions center">
+    <%= link_to "✏️ Edit Garden Notes", edit_garden_path(@garden), class: "btn green-btn card-link" %><br>
+    <%= link_to "🌿 View Plantings", garden_plantings_path(@garden), class: "btn terracotta-btn card-link" %>
+    <%= link_to "← Back to Gardens", gardens_path, class: "btn brown-btn card-link" %>
   </div>
+</div>
+ </div>
 
-  <div class="garden-buttons">
-    <%= link_to "← Back to Gardens", gardens_path, class: "btn secondary" %>
-  </div>
+<div class="danger-zone">
+  <%= button_to "🗑️ Delete Garden", garden_path(@garden),
+      method: :delete,
+      data: { confirm: "Are you sure you want to delete this garden and all associated plantings? This cannot be undone." },
+      class: "btn danger-btn" %>
+  <p>This action cannot be undone. Please confirm before deleting this garden.</p>
+</div>
 </div>

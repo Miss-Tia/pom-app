@@ -1,5 +1,5 @@
-<div class="login-container">
-  <h2 class="login-title">Create Your Account</h2>
+<div class="form-container">
+  <h2 class="form-title">Create Your Account</h2>
   <p class="login-subtitle">Sign up to begin your Peace of Mind journey 🌱</p>
 <% if flash[:alert] %>
   <div class="flash-alert"><%= flash[:alert] %></div>
@@ -31,7 +31,7 @@
       <%= form.password_field :password_confirmation, class: "form-input" %>
     </div>
 
-    <%= form.submit "Create Account", class: "login-btn" %>
+    <%= form.submit "Create Account", class: "card-link" %>
   <% end %>
 
   <p class="login-redirect">

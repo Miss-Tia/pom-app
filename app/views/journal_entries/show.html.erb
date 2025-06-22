@@ -1,27 +1,51 @@
-<div class="journal-show-container">
-  <h1 class="entry-title">
-    <%= @journal_entry.title.presence || "📝 Journal Entry" %>
-  </h1>
+<div class="dashboard">
+  <h1 class="journal-entry-title"><%= @journal_entry.title %></h1>
 
-  <p class="entry-date">
-    <strong>Date:</strong> <%= @journal_entry.created_at.strftime("%B %d, %Y") %>
-  </p>
-
+  
   <% if @journal_entry.category.present? %>
     <p class="entry-category">
       <strong>Category:</strong> <%= @journal_entry.category.name %>
     </p>
   <% end %>
+  
+  <div data-controller="timestamp">
+  <p class="entry-date">
+    <strong>Written:</strong>
+    <span data-timestamp-target="created" data-utc="<%= @journal_entry.created_at.iso8601 %>">
+      <%= @journal_entry.created_at.strftime("%B %d, %Y") %> <!-- fallback -->
+    </span>
+  </p>
+  <% if @journal_entry.updated_at != @journal_entry.created_at %>
+    <p class="entry-date">
+      Updated:
+        <span data-timestamp-target="updated" data-utc="<%= @journal_entry.updated_at.iso8601 %>">
+          <%= @journal_entry.updated_at.strftime("%B %d, %Y at %I:%M %p") %>
+        </span>
+    </p>
+  <% end %>
+</div>
 
   <hr>
+<% if @journal_entry.prompt.present? %>
+<div class="generated-prompt-box">
+  <blockquote class="generated-prompt"><%= @journal_entry.prompt %></blockquote>
+</div>
+<% end %>
 
   <div class="entry-content">
     <%= simple_format(@journal_entry.content) %>
   </div>
 
   <div class="entry-actions">
-    <%= link_to "✏️ Edit Entry", edit_journal_entry_path(@journal_entry), class: "btn btn-small" %>
-    <%= link_to "🗑️ Delete Entry", journal_entry_path(@journal_entry), method: :delete, data: { confirm: "Are you sure you want to delete this entry?" }, class: "btn btn-danger btn-small" %>
-    <%= link_to "⬅️ Back to Journal", journal_entries_path, class: "btn btn-secondary btn-small" %>
+    <%= link_to "✏️ Edit Entry", edit_journal_entry_path(@journal_entry), class: "btn green-btn  btn-small" %>
+    <%= link_to "⬅️ Back to Journal", journal_entries_path, class: "btn brown-btn btn-small" %>
   </div>
+
+  <div class="danger-zone">
+  <%= button_to "🗑️ Delete Journal Entry", journal_entry_path(@journal_entry),
+      method: :delete,
+      data: { confirm: "Are you sure you want to delete this journal entry? This cannot be undone." },
+      class: "btn danger-btn" %>
+  <p>This action cannot be undone. Please confirm before deleting this journal entry.</p>
+</div>
 </div>

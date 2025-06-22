@@ -6,7 +6,7 @@
 <% end %>
 
 <div class="entry-actions">
-  <%= link_to "✏️ Edit Plant", edit_plant_path(@plant), class: "btn btn-small" %>
-  <%= link_to "🗑️ Delete Plant", plant_path(@plant), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-small" %>
-  <%= link_to "⬅️ Back", request.referer || dashboard_path(current_user), class: "btn btn-secondary btn-small" %>
+  <%= link_to "✏️ Edit Plant", edit_plant_path(@plant), class: "btn green-btn" %>
+  <%= link_to "🗑️ Delete Plant", plant_path(@plant), method: :delete, data: { confirm: "Are you sure?" }, class: "btn danger-btn btn-small" %>
+  <%= link_to "⬅️ Back", request.referer || dashboard_path(current_user), class: "btn brown-btn btn-small" %>
 </div>

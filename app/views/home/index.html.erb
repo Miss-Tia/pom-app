@@ -12,10 +12,10 @@
 
   <div class="landing-buttons">
   <% if current_user %>
-    <%= link_to "Go to Dashboard", dashboard_path(current_user), class: "btn primary" %>
+    <%= link_to "Go to Dashboard", dashboard_path(current_user), class: "btn green-btn" %>
   <% else %>
-    <%= link_to "Log In", login_path, class: "btn primary" %>
-    <%= link_to "Sign Up", signup_path, class: "btn secondary" %>
+    <%= link_to "Log In", login_path, class: "btn green-btn" %>
+    <%= link_to "Sign Up", signup_path, class: "btn terracotta-btn" %>
 
   <% end %>
 </div>

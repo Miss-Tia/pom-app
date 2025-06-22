@@ -25,5 +25,8 @@ Rails.application.routes.draw do
   resources :plants, only: [ :new, :create, :edit, :update, :destroy ]
 
 
-  resources :plantings, only: [ :show, :edit, :update, :destroy ]
+  resources :plantings, only: [ :show, :edit, :update, :destroy ] do
+    post :add_progress_note, on: :member
+    post "/plantings/:id/add_progress_note", to: "plantings#add_progress_note", as: :add_progress_note_planting
+  end
 end
