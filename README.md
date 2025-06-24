@@ -16,7 +16,8 @@ Features
 
 Tech
 - Ruby on Rails 8.0.2
-- PostgreSQL
+- SQLite3 (default in development)
+- PostgreSQL (planned for production deployment)
 - Turbo / Hotwire
 - StimulusJS (custom controllers for prompt generation + timestamp formatting)
 - RSpec + FactoryBot + Faker
