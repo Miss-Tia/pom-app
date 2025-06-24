@@ -1,10 +1,10 @@
 # README
 
 
-Peace of Mind (POM): Grow Where You Are Planted is a journaling, gardening, and (eventually) recipe tracking application focused on emotional wellness, internal reflection, and nurturing routines like gardening and journaling. It's designed for individuals such as moms with grown children, or anyone else who may be rediscovering themselves and on a journey towards building a life centered around peace, intention, and creativity. Built as a final project for my Ruby on Rails course that I just keep adding on to, POM is a personal and purposeful space to cultivate calm. 
+🌱 Peace of Mind (POM): Grow Where You Are Planted is a journaling, gardening, and (eventually) recipe tracking application focused on emotional wellness, internal reflection, and nurturing routines like gardening and journaling. It's designed for individuals such as moms with grown children, or anyone else who may be rediscovering themselves and on a journey towards building a life centered around peace, intention, and creativity. Built as a final project for my Ruby on Rails course that I just keep adding on to, POM is a personal and purposeful space to cultivate calm. 
 
 
-Allows users to track what/when/why they plant in their garden, log personal reflections(wins/struggles/gratitude/random thoughts), and respond to AI generated journal prompts. Also a feature to respond to shadow work writing prompts for deep emotional self-exploration.
+Allows users to track what/when/why they plant in their garden, log personal reflections(wins/struggles/gratitude/random thoughts), and respond to AI generated journal prompts. Coming soon: A feature to respond to shadow work writing prompts for deep emotional self-exploration.
 
 Features
 - Journaling: Write entries, edit your thoughts, and generate reflection prompts with AI.
@@ -12,7 +12,7 @@ Features
 - Authentication: Users log in securely and access dashboards based on their role.
 
 Tech
-- Ruby on Rails 8.2
+- Ruby on Rails 8.0.2
 - PostgreSQL
 - Turbo / Hotwire
 - StimulusJS (custom controllers for prompt generation + timestamp formatting)
