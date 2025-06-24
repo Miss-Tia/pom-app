@@ -1,7 +1,7 @@
 # README
 
 
-Peace of Mind (POM): Grow Where You Are Planted
+🌱 Peace of Mind (POM): Grow Where You Are Planted
 
 
 Peace of Mind (POM) is a journaling, gardening, and (eventually) recipe-tracking application focused on emotional wellness, internal reflection, and nurturing routines like gardening and journaling.
