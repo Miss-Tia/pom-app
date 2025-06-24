@@ -38,7 +38,9 @@ Setup Instructions:
 
 5. Run the server  
    `bin/dev` (or `rails s` if you're not using foreman)
-🗒️ Note: I will be deploying this app and giving it a web address shortly so you won't need a  
+
+🗒️ Note: (6/24/25)I will be deploying this app and giving it a web address shortly so you won't need a key to use the AI feature.
+         Will update here when it's done.
 
 What I Learned:
 - How to build and test full CRUD Rails resources
