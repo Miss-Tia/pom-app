@@ -38,13 +38,24 @@ Setup Instructions:
 
 5. Run the server  
    `bin/dev` (or `rails s` if you're not using foreman)
+🗒️ Note: I will be deploying this app and giving it a web address shortly so you won't need a  
 
-Learned:
+What I Learned:
 - How to build and test full CRUD Rails resources
 - Implementing user authentication and role-based access
 - Integrating external APIs using POST requests and Stimulus
 - Building a custom UI that reflects an app’s emotional tone
 - Debugging complex controller/view logic in a real-world project
+
+Future Plans for POM:
+- Add image upload and file attachments to journal entries
+- Calendar view for planting and watering schedules
+- More nuanced AI prompt generation (e.g. mood-based prompts)
+- Recipe keeper that can be tied to a journal entry
+- Image upload for Recipe keeper
+
+
+
 
 👩‍🎓 Created by Tia Anderson, a RailsConf 2025 Scholar, software engineer-in-training, and lifelong grower of both gardens and ideas.
 
