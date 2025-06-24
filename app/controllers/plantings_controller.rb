@@ -1,6 +1,6 @@
 class PlantingsController < ApplicationController
   before_action :require_login
-  before_action :set_planting, only: [ :show, :edit, :update, :destroy ]
+  before_action :set_planting, only: [ :show, :edit, :update, :destroy, :add_progress_note ]
   before_action :set_garden, only: [ :index, :new, :create ]
 
   def index
@@ -8,12 +8,14 @@ class PlantingsController < ApplicationController
   end
 
   def show
+    # @planting is already set via before_action
   end
 
   def new
-  @garden = Garden.find(params[:garden_id])
-  @planting = @garden.plantings.build
-  @plants = Plant.all
+    @planting = @garden.plantings.build
+    @plants = current_user.plants
+    @selected_plant_id = params[:selected_plant_id]
+    @planting.plant_id = @selected_plant_id if @selected_plant_id.present?
   end
 
   def create
@@ -23,15 +25,14 @@ class PlantingsController < ApplicationController
     if @planting.save
       redirect_to garden_plantings_path(@garden), notice: "Planting created successfully!"
     else
-      @plants = Plant.all.order(:name)
+      @plants = current_user.plants.order(:name)
       render :new, status: :unprocessable_entity
     end
   end
 
   def edit
-  @planting = Planting.find(params[:id])
-  @garden = @planting.garden
-  @plants = Plant.all
+    @garden = @planting.garden
+    @plants = current_user.plants
   end
 
   def update
@@ -41,7 +42,7 @@ class PlantingsController < ApplicationController
       redirect_to garden_plantings_path(@planting.garden), notice: "Planting updated successfully!"
     else
       Rails.logger.debug "❌ Update failed: #{@planting.errors.full_messages}"
-      @plants = Plant.all.order(:name)
+      @plants = current_user.plants.order(:name)
       @garden = @planting.garden
       render :edit, status: :unprocessable_entity
     end
@@ -52,6 +53,36 @@ class PlantingsController < ApplicationController
     @planting.destroy
     redirect_to garden_plantings_path(@garden), notice: "Planting deleted successfully."
   end
+
+  def add_progress_note
+  @planting = Planting.find(params[:id])
+
+  # Add new notes at the top
+  new_note = {
+    "content" => params[:content],
+    "timestamp" => Time.current
+  }
+
+  @planting.progress_notes.unshift(new_note)
+  @planting.save
+
+  # Add the index manually for rendering
+  note_with_index = new_note.merge("index" => 0)
+
+  respond_to do |format|
+    format.turbo_stream do
+      render turbo_stream: turbo_stream.prepend(
+        "progress-notes-list",
+        partial: "plantings/note",
+        locals: { note: note_with_index }
+      )
+    end
+    format.html { redirect_to planting_path(@planting), notice: "Note added!" }
+  end
+  end
+
+
+
 
   private
 

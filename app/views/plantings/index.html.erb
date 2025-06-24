@@ -1,5 +1,6 @@
 <h1 class="dashboard-title">Currently Growing in <%= @garden.name %></h1>
 
+<% if @plantings.any? %>
 <div class="planting-grid">
   <% @plantings.each do |planting| %>
     <div class="planting-card">
@@ -7,19 +8,20 @@
       <p><strong>Date Planted:</strong> <%= planting.date_planted.strftime("%B %d, %Y") %></p>
 
       <% if planting.notes.present? %>
-        <div class="planting-notes">
-          <p><strong>📝 Notes:</strong></p>
-          <p>
-            <%= truncate(planting.notes, length: 100, separator: ' ') %>
-            <%= link_to 'Read more', planting_path(planting), class: "link-highlight" %>
-          </p>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-</div>
+          <div class="planting-notes">
+            <p><strong>📝 Notes:</strong></p>
+            <p><%= truncate(planting.notes, length: 100, separator: ' ') %></p>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p class="empty-state">No plantings added yet for this garden. 🌱</p>
+  <p class="empty-state">Start by clicking the button below to add your first one!</p>
+<% end %>
 
 <div class="garden-buttons">
-  <%= link_to "Add New", new_garden_planting_path(@garden), class: "btn primary" %>
-  <%= link_to "← Back to Gardens", gardens_path, class: "btn secondary" %>
+  <%= link_to "Add New", new_garden_planting_path(@garden), class: "btn green-btn" %>
+  <%= link_to "← Back to Gardens", gardens_path, class: "btn brown-btn" %>
 </div>

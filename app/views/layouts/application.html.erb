@@ -7,6 +7,8 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+
   </head>
 
   <body>
@@ -19,8 +21,8 @@
 
       <% if logged_in? %>
         <div class="nav-auth">
-          <span class="welcome-text">Welcome, <%= current_user.first_name %>!</span>
-          <%= button_to "Logout", logout_path, method: :delete, class: "btn logout" %>
+          <span class="welcome-text"> <%= current_user.first_name %></span>
+          <%= button_to "Logout", logout_path, method: :delete, class: "btn terracotta-btn" %>
         </div>
       <% end %>
     </header>

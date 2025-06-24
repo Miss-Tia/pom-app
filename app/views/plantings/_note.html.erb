@@ -1,0 +1,19 @@
+<li class="note-item" data-note-index="<%= note["index"] || 0 %>">
+  <p class="note-timestamp">
+    <strong>
+      <% if note["timestamp"].present? %>
+        <%= Time.parse(note["timestamp"].to_s).in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y at %I:%M %p") %>
+      <% else %>
+        Unknown time
+      <% end %>
+    </strong>
+  </p>
+  <p class="note-content">
+    <% full = note["content"].to_s %>
+    <% truncated = full.length > 100 ? full[0...100] + "..." : full %>
+    <span class="note-text"><%= truncated %></span>
+    <% if full.length > 100 %>
+      <span class="read-more" style="color:#b75e35; cursor:pointer;">Read more</span>
+    <% end %>
+  </p>
+</li>

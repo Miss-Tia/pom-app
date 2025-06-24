@@ -4,22 +4,28 @@ class PlantsController < ApplicationController
   before_action :set_plant, only: [ :show, :edit, :update, :destroy ]
 
   def new
-    @plant = Plant.new
+  @garden = Garden.find_by(id: params[:garden_id])
+  raise ActiveRecord::RecordNotFound, "Garden ID is required to add a plant." unless @garden
+
+  @plant = Plant.new
   end
 
   def create
   @plant = Plant.new(plant_params)
+  @plant.user = current_user # Make sure everyone's plants are associated with their user
+
   if @plant.save
     garden_id = params[:garden_id] # from query string
     if garden_id.present?
-      redirect_to new_garden_planting_path(garden_id), notice: "🌿 Plant added! You can now select it in your new planting."
+      redirect_to new_garden_planting_path(garden_id, selected_plant_id: @plant.id),
+                  notice: "🌿 Plant added! You can now select it in your new planting."
     else
       redirect_to gardens_path, notice: "🌿 Plant added!"
     end
   else
     render :new, status: :unprocessable_entity
   end
-end
+  end
 
 
   def show; end

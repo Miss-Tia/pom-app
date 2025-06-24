@@ -14,9 +14,7 @@ class JournalEntriesController < ApplicationController
 
   all_months = (earliest_date..current_date).select { |d| d.day == 1 }
 
-  @entries_by_month = all_months.reverse.to_h do |month|
-    [ month, grouped_entries[month] || [] ]
-  end
+  @entries_by_month = all_months.reverse.index_with { |month| grouped_entries[month] || [] }
   end
 
 
@@ -28,7 +26,7 @@ class JournalEntriesController < ApplicationController
   def create
     @journal_entry = current_user.journal_entries.new(journal_entry_params)
     if @journal_entry.save
-      redirect_to journal_entries_path, notice: "Journal entry created successfully."
+      redirect_to journal_entry_path(@journal_entry), notice: "Journal entry created successfully."
     else
       render :new, status: :unprocessable_entity
     end
@@ -44,7 +42,7 @@ class JournalEntriesController < ApplicationController
 
   def update
     if @journal_entry.update(journal_entry_params)
-      redirect_to journal_entries_path, notice: "Journal entry updated successfully."
+      redirect_to journal_entry_path(@journal_entry), notice: "Entry updated!"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -62,6 +60,6 @@ class JournalEntriesController < ApplicationController
   end
 
   def journal_entry_params
-    params.require(:journal_entry).permit(:title, :content, :category_id)
+    params.require(:journal_entry).permit(:title, :content, :category_id, :prompt)
   end
 end

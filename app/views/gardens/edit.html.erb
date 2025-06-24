@@ -17,20 +17,18 @@
       <%= form.text_area :notes, class: "form-input", rows: 5 %>
     </div>
 
-    <div class="form-actions">
-      <%= form.submit "Update Garden", class: "btn primary" %>
-      <%= link_to "← Back to Gardens", gardens_path, class: "btn secondary" %>
+    <div class="entry-actions">
+      <%= form.submit "Update Garden", class: "btn green-btn" %>
+      <%= link_to "← Back to Gardens", gardens_path, class: "btn brown-btn" %>
     </div>
   <% end %>
 
-  <hr class="divider" />
-
-  <div class="danger-zone">
+  <div class="danger-zone center">
     <h2>CAUTION!</h2>
-    <p>Once deleted, this garden and its plantings cannot be recovered.</p>
-
-    <%= button_to "🗑️ Delete Garden", @garden, method: :delete,
-          data: { confirm: "Are you sure you want to delete this garden? This cannot be undone." },
-          class: "btn btn-danger" %>
+    <%= button_to "🗑️ Delete Garden", garden_path(@garden),
+        method: :delete,
+        data: { confirm: "Are you sure you want to delete this garden and all associated plantings? This cannot be undone." },
+        class: "btn danger-btn" %>
+    <p>This action cannot be undone. Please confirm before deleting this garden.</p>
   </div>
 </div>

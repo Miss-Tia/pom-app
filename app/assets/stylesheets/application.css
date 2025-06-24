@@ -3,16 +3,67 @@
  *= require_self
  */
 
-/* =============================
-   Login Page Styles
+
+ /* =============================
+   🌿 POM App: Container Layouts
    ============================= */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+
+/* Dashboard container for overviews & index pages */
+.dashboard {
+  text-align: center;
+  padding: 2rem;
+  font-family: 'Georgia', serif;
+  background: linear-gradient(to bottom, #e6e2d3, #f0ede4, #fff7f3);
+  color: #855b3f;
+  max-width: 1000px;
+  margin: 3rem auto;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+/* Form layout for new/edit pages */
+.form-container {
+  background: linear-gradient(to bottom, #e6e2d3, #f0ede4, #fff7f3);
+  max-width: 700px;
+  margin-top: 5rem;
+  margin: 3rem auto;
+  padding: 2.5rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  font-family: 'Georgia', serif;
+  color: #4b3b2a;
 }
 
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* or center if you want vertical center */
+  min-height: 90vh;
+  padding-top: 2rem;
+}
 
+/* Show page layout container */
+.show-container {
+  background: linear-gradient(to bottom, #e6e2d3, #f0ede4, #fff7f3);
+  max-width: 700px;
+  margin: 3rem auto;
+  padding: 2.5rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  font-family: 'Georgia', serif;
+  color: #4b3b2a;
+}
+
+/* Journal index container */
+.journal-container {
+  background-color: rgba(253, 246, 239, 0.9);
+  border-radius: 16px;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 1200px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* Login container */
 .login-container {
   max-width: 400px;
   margin: 80px auto;
@@ -25,15 +76,84 @@
   text-align: center;
 }
 
+/* Garden index card grid */
+.garden-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  justify-content: center;
+}
+
+/* Plantings index card grid */
+.planting-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+
+/* =============================
+   📓 Entry/Title Styling for Containers
+   ============================= */
+
+.form-title, .entry-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #8a9a5b;
+  font-family: 'Georgia', serif;
+}
+
+.entry-date, .entry-category {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #3a3a3a;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+.updated-timestamp {
+  font-size: 0.85rem;
+  color: #9a8c7d;
+  margin-top: 0.5rem;
+}
+
+.entry-content {
+  margin: 1.5rem 0;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.entry-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+  justify-content: center;
+}
+
+/* =============================
+   Login Page Styles
+   ============================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
 .login-title {
   font-size: 28px;
-  color: #7d5a63;
+  align: center;
+  color: #855b3f;
   margin-bottom: 30px;
 }
 
 .login-subtitle {
   font-size: 16px;
-  color: #7d5a63;
+  color: #3a3a3a;
   margin-bottom: 20px;
 }
 
@@ -58,6 +178,7 @@
 
 .form-input {
   width: 100%;
+  box-sizing: border-box;
   padding: 10px 14px;
   border: 1px solid #c7bdb2;
   border-radius: 6px;
@@ -73,19 +194,6 @@
   box-shadow: 0 0 4px #8a9a5b66;
 }
 
-.login-btn {
-  background-color: #8a9a5b;
-  color: white;
-  padding: 12px 24px;
-  border-radius: 24px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
-
-.login-btn:hover {
-  background-color: #6e7f4d;
-}
 
 .back-link {
   display: block;
@@ -138,24 +246,6 @@ body {
   color: #7d5a63;
 }
 
-.btn.login {
-  background-color: #8a9a5b;
-  color: white;
-}
-
-.btn.logout {
-  background-color: #b75e35;
-  color: white;
-}
-
-.btn.login:hover {
-  background-color: #6e7f4d;
-}
-
-.btn.logout:hover {
-  background-color: #934526;
-}
-
 /* =============================
    Landing Page & Logo Styling
    ============================= */
@@ -202,56 +292,6 @@ body {
     Button Styles
    ============================= */
 
-.btn {
-  padding: 12px 28px;
-  border-radius: 24px;
-  font-size: 16px;
-  text-decoration: none;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-}
-
-.btn.primary {
-  background-color: #8a9a5b;
-  color: white;
-}
-
-.btn.primary:hover {
-  background-color: #6e7f4d;
-}
-
-.btn.secondary {
-  background-color: #b0a16e;
-  color: white;
-}
-
-.btn.secondary:hover {
-  background-color: #9d8e5e;
-}
-
-.btn-view {
-  background-color: #c1b68d; /* Adjust this to match your "Back to Dashboard" bg */
-  color: #2f2b20;
-  font-weight: bold;
-  border: none;
-  padding: 0.75rem 1.25rem;
-  border-radius: 1.75rem;
-  font-size: 1rem;
-  display: inline-block;
-  text-align: center;
-  transition: background-color 0.3s ease;
-}
-
-.btn-view:hover {
-  background-color: #a99d7a; 
-  color: #1c1b16;
-}
-
-
-.btn-view:hover {
-  background-color: #9d8e5e;
-}
 .edit-icon {
   position: absolute;
   top: 0.5rem;
@@ -269,22 +309,6 @@ body {
   color: #b75e35;
 }
 
-.btn.small.green-btn {
-  display: inline-block;
-  padding: 0.3rem 0.6rem;
-  font-size: 0.9rem;
-  font-weight: 600;
-  background-color: #8ca07e;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-
-.btn.small.green-btn:hover {
-  background-color: #748f65;
-}
 
 /* =============================
    Links & Prompts
@@ -336,17 +360,7 @@ body {
 /* =============================
    Dashboard Styles
    ============================= */
-.dashboard {
-  text-align: center;
-  padding: 2rem;
-  font-family: 'Georgia', serif;
-  background: linear-gradient(to bottom, #e6e2d3, #f0ede4, #fff7f3);
-  color: #4b3b2a;
-  max-width: 1000px;
-  margin: 0 auto;
-  border-radius: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
+
 .dashboard-title {
   text-align: center;
   font-size: 2.25rem;
@@ -402,6 +416,10 @@ body {
   margin-bottom: 0.75rem;
 }
 
+/* =============================
+   Utility Class: .card-link
+   Used for all links inside cards so they look styled & clickable
+   ============================= */
 .card-link {
   display: inline-block;
   margin-top: 1rem;
@@ -414,6 +432,17 @@ body {
   font-size: 1rem;
 }
 
+.card-link-login {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #8a9a5b;
+  color: white;
+  text-decoration: none;
+  border-radius: 1rem;
+  font-weight: bold;
+  font-size: 1rem;
+}
 .card-link:hover {
   background-color: #6e7f4d;
 }
@@ -423,16 +452,10 @@ body {
   color: #f5f2ef;
   text-decoration: none;
 }
+
 /* =============================
    Garden Styles
    ============================= */
-.garden-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  margin-top: 2rem;
-  justify-content: center;
-}
 
 .garden-card {
   background-color: #fffaf5;
@@ -443,7 +466,15 @@ body {
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   transition: transform 0.2s ease;
 }
-
+.garden-show-card {
+  background-color: #fffaf5;
+  border: 1px solid #e0dcd5;
+  border-radius: 1.25rem;
+  padding: 1.25rem;
+  width: 80%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+}
 .garden-card:hover {
   transform: translateY(-4px);
 }
@@ -456,17 +487,16 @@ body {
   gap: 1rem;
   align-items: center;
 }
+.section-divider {
+  border: none;
+  height: 1px;
+  background-color: #e0dcd5;
+  margin: 1rem 0;
+}
 
 /* =============================
    Plantings Styles
    ============================= */
-.planting-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  justify-content: center;
-  margin-top: 2rem;
-}
 
 .planting-card {
   background-color: #fffefc;
@@ -507,19 +537,29 @@ body {
   color: #6e7f4d;
   text-decoration: underline;
 }
+.helper-text {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #6d4c41;
+}
+
+.inline-btn {
+  margin-left: 0.5rem;
+  font-weight: bold;
+  text-decoration: underline;
+  padding: 0.2rem 0.5rem;
+  background-color: transparent;
+  border: none;
+  color: #6d4c41;
+  cursor: pointer;
+}
+.inline-btn:hover {
+  color: #9e6f3e;
+}
 
 /* =============================
    Journal Styles
    ============================= */
-
-.journal-container {
-  background-color: rgba(253, 246, 239, 0.9);
-  border-radius: 16px;
-  padding: 2rem;
-  margin: 2rem auto;
-  max-width: 1200px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-}
 
 .journal-grid {
   display: flex;
@@ -558,42 +598,11 @@ body {
   border-top: 1px solid #eee;
 }
 
-/* Edit/Delete button spacing */
-.entry-actions {
-  margin-top: 0.5rem;
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.btn-small {
-  padding: 0.4rem 0.75rem;
-  font-size: 0.875rem;
-  border-radius: 8px;
-}
-
 .empty-month-message {
   margin-bottom: 1rem;
   color: #777;
   font-style: italic;
   display: block;
-}
-
-.journal-form-container {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 2rem;
-  background-color: #fdf9f4; 
-  border-radius: 20px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
-  text-align: left;
-}
-
-.form-title {
-  text-align: center;
-  font-size: 1.75rem;
-  margin-bottom: 2rem;
-  color: #3a3a3a;
 }
 
 .form-group {
@@ -620,36 +629,79 @@ body {
 }
 
 .form-actions.center {
+  display: flex;
   justify-content: center;
+  gap: 1rem; 
+  margin-top: 2rem;
+}
+select.locked {
+  pointer-events: none;
+  background-color: #f0f0f0;
+  color: #888;
+  border: 1px solid #ccc;
 }
 
-.btn {
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
+.centered-field {
+  max-width: 600px;
+  margin: 0 auto 1.5rem auto;
+  text-align: left;
+}
+
+.generated-prompt-box {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.2rem;
+  background-color: #fffef9;
+  border-left: 4px solid #8a9a5b;
   border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  border: none;
-  display: inline-block;
-  cursor: pointer;
-  text-align: center;
   font-family: inherit;
-}
-
-.primary-btn {
-  background-color: #855b3f; /* earthy brown */
-  color: #fff;
-}
-
-.secondary-btn {
-  background-color: #e6ded0;
+  font-size: 1rem;
   color: #3a3a3a;
-  border: 2px solid #855b3f;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.03);
 }
 
-.btn:hover {
-  opacity: 0.9;
+.generated-prompt {
+  background-color: #fffef9;
+  padding: 0.2rem;
+  margin-top: 0.2rem;
+  font-style: italic;
+  font-family: inherit;
+  font-size: 1rem;
+  text-align: center;
+  color: #3a3a3a;
+  line-height: 1.6;
+  white-space: pre-wrap;
 }
+
+.generated-prompt-text {
+  margin: 0;
+  padding-left: 0.5rem;
+  font-style: italic;
+  white-space: pre-wrap;
+}
+
+.spinner {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 3px solid #e6e2d3;
+  border-top: 3px solid #b75e35;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
 .journal-header-container {
   display: flex;
   justify-content: space-between;
@@ -667,20 +719,49 @@ body {
   flex-grow: 1;
 }
 
-.journal-nav-btn {
-  background-color: #8a9a5b;
-  color: white;
-  font-weight: bold;
-  border-radius: 24px;
-  padding: 0.6rem 1.25rem;
-  text-decoration: none;
-  font-size: 1rem;
-  transition: background-color 0.2s ease-in-out;
-  white-space: nowrap;
+.entry-row {
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #eee5dc;
 }
 
-.journal-nav-btn:hover {
-  background-color: #6e7f4d;
+.entry-link-block {
+  text-decoration: none;
+  display: block;
+  padding: 0.5rem 0;
+  transition: background-color 0.2s ease;
+}
+
+.entry-link-block:hover {
+  background-color: #f9f5ef;
+  border-radius: 6px;
+}
+
+.entry-title {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.entry-meta {
+  margin-top: 0.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.entry-category {
+  font-size: 1.1rem;
+  color: #9e6f3e; /* Soft brown/terra cotta */
+  margin-bottom: 0.5rem;
+}
+
+.entry-date {
+  font-size: 0.8rem;
+  color: #999999;
+}
+.form-static {
+  padding: 0.5rem 0;
+  font-weight: bold;
+  color: #8a9a5b; 
 }
 
 /* Responsive for smaller screens */
@@ -737,10 +818,6 @@ body {
   color: #6e7f4d; /* darker olive */
 }
 
-.entry-row {
-  margin-bottom: 1rem;
-}
-
 .journal-month details[open] > summary.month-label {
   color: #b75e35; /* terra cotta when expanded */
 }
@@ -755,26 +832,6 @@ body {
 
 details[open] .month-label {
   color: #b75e35;
-}
-
-.add-entry-btn {
-  background-color: #8a9a5b;
-  color: white;
-  font-weight: bold;
-  border-radius: 24px;
-  padding: 0.6rem 1.25rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  font-size: 1rem;
-  transition: background-color 0.2s ease-in-out;
-  gap: 0.5rem;
-  margin-top: 0.75rem;
-}
-
-.add-entry-btn:hover {
-  background-color: #6e7f4d;
 }
 
 .empty-month-message {
@@ -802,44 +859,49 @@ details[open] .month-label {
   text-decoration: underline;
   color: #b75e35;
 }
-
-/* =============================
-   Journal Show Styles
-   ============================= */
-.journal-show-container {
-  max-width: 700px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background-color: #fff9f5;
-  border-radius: 1rem;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+/* Expands and scrolls the prompt box when shown */
+#prompt-field {
+  margin-top: 1rem;
+  display: none; /* hidden until button click */
 }
 
-.entry-title {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-  color: #3d5a40;
+/* scrollable prompt field */
+.scrollable-textarea {
+  resize: vertical;
+  overflow-y: auto;
+  min-height: 100px;
+  max-height: 200px;
+  width: 100%;
+  background-color: #fffef9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-family: inherit;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
-.entry-date, .entry-category {
-  font-size: 0.95rem;
-  color: #6b705c;
-  margin-bottom: 0.5rem;
+/* Larger content field with scroll */
+.content-box {
+  min-height: 200px;
+  max-height: 400px;
+  resize: vertical;
+  overflow-y: auto;
+  width: 100%;
+  background-color: #fffef9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-family: inherit;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
-.entry-content {
-  margin: 1.5rem 0;
-  line-height: 1.6;
-  font-size: 1rem;
+.journal-entry-title {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #8a9a5b;
+  font-family: 'Georgia', serif;
 }
-
-.entry-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
 /* =============================
    Footer
    ============================= */
@@ -880,19 +942,30 @@ main {
   margin-left: 0.5rem;
   font-size: 0.9rem;
 }
-.form-actions {
-  margin-top: 1rem;
-}
+
 .back-link {
   display: inline-block;
   margin-top: 1rem;
   font-size: 0.9rem;
 }
 }
-
 /* =============================
    Garden Notes Styles
    ============================= */
+ 
+.garden-title {
+  color: #8a9a5b;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.garden-notes-snippet {
+  color: #3a3a3a;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
    
 .garden-notes {
   position: relative;
@@ -911,7 +984,7 @@ main {
 .read-toggle {
   display: inline-block;
   margin-top: 0.5rem;
-  color: #3b82f6;
+  color: #855b3f;
   font-weight: bold;
   cursor: pointer;
 }
@@ -925,6 +998,7 @@ main {
   background-color: #fff3f0;
   border: 1px solid #e0dcd5;
   border-radius: 12px;
+  text-align: center;
 }
 
 .danger-zone h2 {
@@ -932,18 +1006,6 @@ main {
   margin-bottom: 0.5rem;
 }
 
-.btn.btn-danger {
-  background-color: #b75e35;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 12px;
-  font-weight: bold;
-}
-
-.btn.btn-danger:hover {
-  background-color: #934526;
-}
 .flash.notice {
   background-color: #e0ffe0;
   color: #155724;
@@ -962,20 +1024,83 @@ main {
   border-radius: 8px;
 }
 
+.progress-notes-section {
+  margin-top: 2rem;
+  background-color: #f9f6f0;
+  border: 1px solid #ddd3c2;
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.section-heading {
+  font-size: 1.4rem;
+  color: #6e4f2f;
+  margin-bottom: 1rem;
+}
+
+.progress-notes-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 1rem;
+}
+
+.progress-note-item {
+  background: #f8f5f0;
+  border: 1px solid #e0dcd5;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+.progress-notes-display {
+  background-color: #fdfaf6;
+  padding: 1rem;
+  border: 1px solid #e0dcd5;
+  border-radius: 12px;
+  margin-top: 2rem;
+}
+
+.note-list {
+  list-style: none;
+  padding: 0;
+}
+
+.note-item {
+  background-color: #fff;
+  border-left: 5px solid #a3b18a;
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+}
+
+.note-timestamp {
+  font-size: 0.9rem;
+  color: #6a6a6a;
+  margin-bottom: 0.25rem;
+}
+
+.no-notes {
+  font-style: italic;
+  color: #8c715a;
+}
+
+
+
 /* =============================
    Form Styles
    ============================= */
-.form-container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 2rem;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
-}
+
 
 .form-group {
   margin-bottom: 1.5rem;
+}
+
+.form-title {
+  text-align: center;
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+  color: #855b3f; 
+  font-family: 'Georgia', serif;
 }
 
 .form-actions {
@@ -986,6 +1111,26 @@ main {
   margin-top: 1rem;
 }
 
+.form-select {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #fffef9;
+  font-family: inherit;
+  color: #855b3f;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04);
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg width='10' height='5' viewBox='0 0 10 5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%234b3b2a' d='M0 0l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 0.6rem;
+}
+
+/* =============================
+   🌍 Global Button Styles
+   ============================= */
 .btn {
   padding: 0.5rem 1rem;
   font-size: 1rem;
@@ -996,19 +1141,184 @@ main {
   display: inline-block;
   cursor: pointer;
   text-align: center;
+  font-family: inherit;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
 }
 
-.primary-btn {
-  background-color: #654321;
+input.btn,
+button.btn {
+  all: unset;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-family: inherit;
+  background-color: inherit; /* so variants work */
+  color: inherit;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+  .btn:hover {
+  opacity: 0.9;
+}
+
+.btn-small {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.875rem;
+  border-radius: 8px;
+}
+.btn-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* =============================
+    POM Button Variants
+   ============================= */
+
+/* Green = Primary action (Submit, Save, Confirm) */
+.green-btn,
+input.green-btn,
+button.green-btn {
+  background-color: #8a9a5b;
   color: white;
 }
 
-.secondary-btn {
-  background-color: #f5f5f5;
-  color: #654321;
-  border: 2px solid #654321;
+.green-btn:hover,
+input.green-btn:hover,
+button.green-btn:hover {
+  background-color: #6e7f4d;
 }
 
-.btn:hover {
-  opacity: 0.9;
+/* Brown = Secondary action (Back, Cancel) */
+.brown-btn,
+input.brown-btn,
+button.brown-btn {
+  background-color: #855b3f;
+  color: white;
+  
+}
+
+.brown-btn:hover,
+input.brown-btn:hover,
+button.brown-btn:hover {
+  background-color: #654321;
+}
+
+/* Terracotta = Accents (Add, Highlighted links, Extra buttons) */
+.terracotta-btn,
+input.terracotta-btn,
+button.terracotta-btn {
+  background-color: #b75e35;
+  color: white;
+}
+
+.terracotta-btn:hover,
+input.terracotta-btn:hover,
+button.terracotta-btn:hover {
+  background-color: #934526;
+}
+
+/* Red/Danger = Destructive (Delete) */
+.danger-btn,
+input.danger-btn,
+button.danger-btn {
+  background-color: #aa3a3a;
+  color: white;
+  margin-bottom: 0.75rem;
+}
+
+.danger-btn:hover,
+input.danger-btn:hover,
+button.danger-btn:hover {
+  background-color: #922b2b;
+}
+
+.garden-notes-btn {
+  width: 100%;
+  max-width: 200px;
+  text-align: center;
+}
+/* =============================
+   📓 Journal-Specific Buttons
+   ============================= */
+
+/* Button for navigating between months, or adding entries */
+.journal-nav-btn,
+.add-entry-btn {
+  background-color: #8a9a5b; /* Reuse green */
+  color: white;
+  font-weight: bold;
+  border-radius: 24px;
+  padding: 0.6rem 1.25rem;
+  font-size: 1rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.journal-nav-btn:hover,
+.add-entry-btn:hover {
+  background-color: #6e7f4d;
+}
+  .empty-state {
+  font-size: 1.2rem;
+  margin: 1rem 0;
+  text-align: center;
+  color: #555;
+}
+/* =============================
+   🌿 POM App: Responsive Styles
+   ============================= */
+   @media (max-width: 768px) {
+  .entry-row p {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .entry-date {
+    font-size: 0.75rem;
+    opacity: 0.6;
+  }
+
+  .entry-category {
+    font-size: 1.0rem;
+    color: #b75e35;
+  }
+}
+/* STACK JOURNAL ACCORDIONS ON MOBILE */
+@media screen and (max-width: 768px) {
+  .journal-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .journal-month {
+    width: 100%;
+  }
+
+  details summary.month-label {
+    cursor: pointer;
+    padding: 0.5rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #a04f1f;
+  }
+
+  .month-entries {
+    padding: 0.5rem 1rem;
+  }
+
+  .entry-link-block {
+    display: block;
+    padding: 0.5rem 0;
+  }
 }

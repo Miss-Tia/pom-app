@@ -3,29 +3,28 @@ require 'rails_helper'
 RSpec.describe "Plantings", type: :request do
   let!(:user) { User.first || User.create!(first_name: "Tia", last_name: "Anderson", email: "tia@example.com", password: "password", password_confirmation: "password") }
   let!(:garden) { Garden.first || Garden.create!(name: "Test Garden", location: "Backyard", user: user) }
-  let!(:plant) { Plant.first || Plant.create!(name: "Tomato", variety: "Cherry", garden: garden) }
+  let!(:plant) { Plant.first || Plant.create!(name: "Tomato", variety: "Cherry", user: user) }
 
   def log_in
     post login_path, params: { email: user.email, password: "password" }
   end
 
   context "when not logged in" do
-    it "redirects GET /plantings to login" do
-      get plantings_path
+    it "redirects GET /gardens/:garden_id/plantings to login" do
+      get garden_plantings_path(garden)
       expect(response).to redirect_to(login_path)
     end
 
     it "redirects GET /plantings/:id to login" do
-      planting = Planting.create!(garden: garden, plant: plant, date_planted: Date.today, season: "Spring", notes: "Test")
+      planting = Planting.create!(garden: garden, plant: plant, user: user, date_planted: Date.today, season: "Spring", notes: "Test")
       get planting_path(planting)
       expect(response).to redirect_to(login_path)
     end
 
-    it "redirects POST /plantings to login" do
-      post plantings_path, params: {
+    it "redirects POST /gardens/:garden_id/plantings to login" do
+      post garden_plantings_path(garden), params: {
         planting: {
           plant_id: plant.id,
-          garden_id: garden.id,
           date_planted: Date.today,
           season: "Spring",
           notes: "Should not save"
@@ -35,7 +34,15 @@ RSpec.describe "Plantings", type: :request do
     end
 
     it "redirects PATCH /plantings/:id to login" do
-      planting = Planting.create!(garden: garden, plant: plant, date_planted: Date.today, season: "Spring", notes: "Test")
+      planting = Planting.create!(
+        garden: garden,
+        plant: plant,
+        user: user,
+        date_planted: Date.today,
+        season: "Spring",
+        notes: "Test"
+      )
+
       patch planting_path(planting), params: { planting: { notes: "Shouldn't update" } }
       expect(response).to redirect_to(login_path)
     end
@@ -44,26 +51,29 @@ RSpec.describe "Plantings", type: :request do
   context "when logged in" do
     before { log_in }
 
-    describe "GET /plantings" do
-      it "returns http success" do
-        Planting.create!(
-          garden: garden,
-          plant: plant,
-          date_planted: Date.today,
-          season: "Spring",
-          notes: "Test notes"
-        )
+    describe "GET /gardens/:garden_id/plantings" do
+  it "returns http success" do
+    Planting.create!(
+      garden: garden,
+      plant: plant,
+      user: user,
+      date_planted: Date.today,
+      season: "Spring",
+      notes: "Test notes"
+    )
 
-        get plantings_path
-        expect(response).to have_http_status(:success)
-      end
-    end
+    get garden_plantings_path(garden)
+    expect(response).to have_http_status(:success)
+  end
+end
+
 
     describe "GET /plantings/:id" do
       it "returns http success" do
         planting = Planting.create!(
           garden: garden,
           plant: plant,
+          user: user,
           date_planted: Date.today,
           season: "Spring",
           notes: "Test notes"
@@ -74,14 +84,14 @@ RSpec.describe "Plantings", type: :request do
       end
     end
 
-    describe "POST /plantings" do
+    describe "POST /gardens/:garden_id/plantings" do
       context "with valid parameters" do
         it "creates a new planting and redirects" do
           expect {
-            post plantings_path, params: {
+            post garden_plantings_path(garden), params: {
               planting: {
                 plant_id: plant.id,
-                garden_id: garden.id,
+                user_id: user.id,
                 date_planted: Date.today,
                 season: "Spring",
                 notes: "Planted during testing"
@@ -89,7 +99,7 @@ RSpec.describe "Plantings", type: :request do
             }
           }.to change(Planting, :count).by(1)
 
-          expect(response).to redirect_to(assigns(:planting))
+          expect(response).to redirect_to(garden_plantings_path(garden))
           follow_redirect!
           expect(response.body).to include("Planted during testing")
         end
@@ -97,10 +107,10 @@ RSpec.describe "Plantings", type: :request do
 
       context "with invalid parameters" do
         it "does not create a planting and re-renders the form" do
-          post plantings_path, params: {
+          post garden_plantings_path(garden), params: {
             planting: {
               plant_id: nil,
-              garden_id: garden.id,
+              user_id: user.id,
               date_planted: nil,
               season: "",
               notes: ""
@@ -118,6 +128,7 @@ RSpec.describe "Plantings", type: :request do
         Planting.create!(
           plant: plant,
           garden: garden,
+          user: user,
           date_planted: Date.today,
           season: "Spring",
           notes: "Original notes"
@@ -132,7 +143,7 @@ RSpec.describe "Plantings", type: :request do
             }
           }
 
-          expect(response).to redirect_to(planting_path(planting))
+          expect(response).to redirect_to(garden_plantings_path(garden))
           follow_redirect!
           expect(response.body).to include("Updated notes")
         end

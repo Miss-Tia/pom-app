@@ -1,33 +1,34 @@
-<div class="journal-container">
+<div class="dashboard">
   <div class="journal-header-container">
-    <%= link_to "🏠 Dashboard", dashboard_path(current_user), class: "btn journal-nav-btn" %>
+    <%= link_to "🏠 Dashboard", dashboard_path(current_user), class: "btn brown-btn" %>
 
     <h1 class="journal-title">My Journal Entries</h1>
 
-    <%= link_to "➕ New Entry", new_journal_entry_path, class: "btn journal-nav-btn right" %>
+    <%= link_to "➕ New Entry", new_journal_entry_path, class: "btn green-btn right" %>
   </div>
 
   <div class="journal-grid">
     <% @entries_by_month.each do |month, entries| %>
       <div class="journal-month">
-        <details>
+        <details <%= "open" if @entries_by_month.keys.index(month) < 3 %>>
           <summary class="month-label"><%= month.strftime("%B %Y") %></summary>
 
           <div class="month-entries">
             <% if entries.any? %>
               <% entries.each do |entry| %>
                 <div class="entry-row">
-                  <p>
-                    <%= link_to entry.title, journal_entry_path(entry), class: "link-highlight" %>
-                    <% if entry.category.present? %>
-                      <span class="entry-category"> – <%= entry.category.name %></span>
-                    <% end %>
-                    <small class="entry-date"><%= entry.created_at.strftime('%B %d, %Y') %></small>
-                  </p>
+                  <%= link_to journal_entry_path(entry), class: "entry-link-block" do %>
+                    <p class="entry-title link-highlight"><%= entry.title %></p>
 
-                  <div class="entry-actions">
-                    <%= link_to "View", journal_entry_path(entry), class: "btn btn-small" %>
-                  </div>
+                    <% if entry.category.present? %>
+                      <div class="entry-meta">
+                        <span class="entry-category"><%= entry.category.name %></span>
+                        <span class="entry-date"><%= entry.created_at.strftime('%B %d, %Y') %></span>
+                      </div>
+                    <% else %>
+                      <p class="entry-date"><%= entry.created_at.strftime('%B %d, %Y') %></p>
+                    <% end %>
+                  <% end %>
                 </div>
               <% end %>
             <% else %>
