@@ -26,7 +26,7 @@ plants_data = [
 ]
 
 plants_data.each do |data|
-  plant = Plant.find_or_create_by!(name: data[:name], garden_id: garden.id)
+  plant = Plant.find_or_create_by!(name: data[:name])
   plant.update!(notes: data[:notes]) if plant.notes.blank?
 
   Planting.create!(
