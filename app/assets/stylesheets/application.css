@@ -1,10 +1,1324 @@
 /*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
+ *= require_tree .
+ *= require_self
  */
+
+
+ /* =============================
+   🌿 POM App: Container Layouts
+   ============================= */
+
+/* Dashboard container for overviews & index pages */
+.dashboard {
+  text-align: center;
+  padding: 2rem;
+  font-family: 'Georgia', serif;
+  background: linear-gradient(to bottom, #e6e2d3, #f0ede4, #fff7f3);
+  color: #855b3f;
+  max-width: 1000px;
+  margin: 3rem auto;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+/* Form layout for new/edit pages */
+.form-container {
+  background: linear-gradient(to bottom, #e6e2d3, #f0ede4, #fff7f3);
+  max-width: 700px;
+  margin-top: 5rem;
+  margin: 3rem auto;
+  padding: 2.5rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  font-family: 'Georgia', serif;
+  color: #4b3b2a;
+}
+
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* or center if you want vertical center */
+  min-height: 90vh;
+  padding-top: 2rem;
+}
+
+/* Show page layout container */
+.show-container {
+  background: linear-gradient(to bottom, #e6e2d3, #f0ede4, #fff7f3);
+  max-width: 700px;
+  margin: 3rem auto;
+  padding: 2.5rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  font-family: 'Georgia', serif;
+  color: #4b3b2a;
+}
+
+/* Journal index container */
+.journal-container {
+  background-color: rgba(253, 246, 239, 0.9);
+  border-radius: 16px;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 1200px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* Login container */
+.login-container {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 40px 30px;
+  background-color: #fdf6ef;
+  border: 1px solid #e0dcd5;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  font-family: 'Georgia', serif;
+  text-align: center;
+}
+
+/* Garden index card grid */
+.garden-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  justify-content: center;
+}
+
+/* Plantings index card grid */
+.planting-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+
+/* =============================
+   📓 Entry/Title Styling for Containers
+   ============================= */
+
+.form-title, .entry-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #8a9a5b;
+  font-family: 'Georgia', serif;
+}
+
+.entry-date, .entry-category {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #3a3a3a;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+.updated-timestamp {
+  font-size: 0.85rem;
+  color: #9a8c7d;
+  margin-top: 0.5rem;
+}
+
+.entry-content {
+  margin: 1.5rem 0;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.entry-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+  justify-content: center;
+}
+
+/* =============================
+   Login Page Styles
+   ============================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+.login-title {
+  font-size: 28px;
+  align: center;
+  color: #855b3f;
+  margin-bottom: 30px;
+}
+
+.login-subtitle {
+  font-size: 16px;
+  color: #3a3a3a;
+  margin-bottom: 20px;
+}
+
+.login-form {
+  text-align: left;
+  width: 100%;
+}
+
+.login-form .form-group {
+  margin-bottom: 20px;
+  text-align: left;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.login-form label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #4b3b2a;
+}
+
+.form-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 14px;
+  border: 1px solid #c7bdb2;
+  border-radius: 6px;
+  background-color: #fffaf5;
+  font-family: 'Georgia', serif;
+  font-size: 16px;
+  color: #4b3b2a;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #8a9a5b;
+  box-shadow: 0 0 4px #8a9a5b66;
+}
+
+
+.back-link {
+  display: block;
+  margin-top: 20px;
+  color: #b75e35;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+/* =============================
+   Base Typography & Layout
+   ============================= */
+
+body {
+  background-color: #fdf6ef;
+  font-family: 'Georgia', serif;
+  color: #4b3b2a;
+  margin: 0;
+  padding: 0;
+}
+
+/* =============================
+   Header (Navbar) Styles
+   ============================= */
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #fdf6ef;
+  border-bottom: 1px solid #e0dcd5;
+}
+
+.logo-container .pom-logo {
+  height: 70px;
+}
+
+.nav-auth {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.welcome-text {
+  font-weight: bold;
+  color: #7d5a63;
+}
+
+/* =============================
+   Landing Page & Logo Styling
+   ============================= */
+
+.landing-page {
+  text-align: center;
+  padding: 3rem 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.center-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.pom-logo-large {
+  max-width: 300px;
+  height: auto;
+}
+
+.tagline {
+  font-size: 36px;
+  color: #b75e35;
+  margin-bottom: 24px;
+}
+
+.description {
+  font-size: 18px;
+  color: #7d5a63;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.landing-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* =============================
+    Button Styles
+   ============================= */
+
+.edit-icon {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  font-size: 1.2rem;
+  opacity: 0.4;
+  text-decoration: none;
+  transition: opacity 0.3s ease, transform 0.2s ease;
+  color: #7d5a63;
+}
+
+.edit-icon:hover {
+  opacity: 0.9;
+  transform: scale(1.1);
+  color: #b75e35;
+}
+
+
+/* =============================
+   Links & Prompts
+   ============================= */
+
+.link-highlight {
+  color: #b75e35;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.link-highlight:hover {
+  text-decoration: underline;
+  color: #934526;
+}
+
+.signup-link,
+.login-redirect {
+  font-size: 14px;
+  color: #7d5a63;
+  margin-top: 20px;
+}
+
+.flash-alert {
+  color: #934526;
+  background-color: #fff4f0;
+  border: 1px solid #f5c6cb;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.field-wrapper {
+  position: relative;
+  margin-bottom: 20px;
+}
+/* =============================
+   Future animations, error highlighting, etc.
+   ============================= */
+
+.field-wrapper:focus-within {
+  border-left: 3px solid #8a9a5b;
+  padding-left: 12px;
+  transition: all 0.2s ease-in-out;
+}
+
+/* =============================
+   Dashboard Styles
+   ============================= */
+
+.dashboard-title {
+  text-align: center;
+  font-size: 2.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #b75e35;
+}
+
+.dashboard-subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  color: #7d5a63;
+}
+
+.dashboard-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.dashboard-card {
+  position: relative;
+  background-color: #fffaf5;
+  border: 2px solid #e0dcd5;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  width: 260px;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+}
+
+.disabled-card {
+  transform: none !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: default;
+}
+
+.disabled-card:hover {
+  transform: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-emoji {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+/* =============================
+   Utility Class: .card-link
+   Used for all links inside cards so they look styled & clickable
+   ============================= */
+.card-link {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #8a9a5b;
+  color: white;
+  text-decoration: none;
+  border-radius: 1rem;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.card-link-login {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #8a9a5b;
+  color: white;
+  text-decoration: none;
+  border-radius: 1rem;
+  font-weight: bold;
+  font-size: 1rem;
+}
+.card-link:hover {
+  background-color: #6e7f4d;
+}
+
+.disabled-link:hover {
+  background-color: #ccc5bb;
+  color: #f5f2ef;
+  text-decoration: none;
+}
+
+/* =============================
+   Garden Styles
+   ============================= */
+
+.garden-card {
+  background-color: #fffaf5;
+  border: 1px solid #e0dcd5;
+  border-radius: 1.25rem;
+  padding: 1.25rem;
+  width: 280px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+}
+.garden-show-card {
+  background-color: #fffaf5;
+  border: 1px solid #e0dcd5;
+  border-radius: 1.25rem;
+  padding: 1.25rem;
+  width: 80%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+}
+.garden-card:hover {
+  transform: translateY(-4px);
+}
+
+.garden-buttons {
+  text-align: center;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+.section-divider {
+  border: none;
+  height: 1px;
+  background-color: #e0dcd5;
+  margin: 1rem 0;
+}
+
+/* =============================
+   Plantings Styles
+   ============================= */
+
+.planting-card {
+  background-color: #fffefc;
+  border: 1px solid #e6e2d3;
+  border-radius: 1rem;
+  padding: 1rem;
+  width: 260px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  transition: transform 0.2s ease;
+}
+
+.planting-card:hover {
+  transform: translateY(-4px);
+}
+
+.planting-notes {
+  background-color: #f9f5ef;
+  border-left: 4px solid #b75e35; 
+  padding: 1rem;
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #4b3b2a;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.planting-notes p strong {
+  color: #4b3b2a; /* soften the "Notes:" heading color */
+}
+
+.link-highlight {
+  color: #8a9a5b;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.link-highlight:hover {
+  color: #6e7f4d;
+  text-decoration: underline;
+}
+.helper-text {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #6d4c41;
+}
+
+.inline-btn {
+  margin-left: 0.5rem;
+  font-weight: bold;
+  text-decoration: underline;
+  padding: 0.2rem 0.5rem;
+  background-color: transparent;
+  border: none;
+  color: #6d4c41;
+  cursor: pointer;
+}
+.inline-btn:hover {
+  color: #9e6f3e;
+}
+
+/* =============================
+   Journal Styles
+   ============================= */
+
+.journal-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: flex-start;
+  align-items: flex-start;;
+}
+
+.journal-month {
+  background: #fffdf8;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  width: calc(33.333% - 1rem);
+  box-sizing: border-box;
+  transition: all 0.3s ease-in-out;
+}
+
+.month-label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #4b3b2a;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+.month-entries {
+  margin-top: 1rem;
+}
+
+/* Entry row (title, date, buttons) */
+.entry-row {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #eee;
+}
+
+.empty-month-message {
+  margin-bottom: 1rem;
+  color: #777;
+  font-style: italic;
+  display: block;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-family: inherit;
+  background-color: #fffef9;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.form-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.form-actions.center {
+  display: flex;
+  justify-content: center;
+  gap: 1rem; 
+  margin-top: 2rem;
+}
+select.locked {
+  pointer-events: none;
+  background-color: #f0f0f0;
+  color: #888;
+  border: 1px solid #ccc;
+}
+
+.centered-field {
+  max-width: 600px;
+  margin: 0 auto 1.5rem auto;
+  text-align: left;
+}
+
+.generated-prompt-box {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.2rem;
+  background-color: #fffef9;
+  border-left: 4px solid #8a9a5b;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+  color: #3a3a3a;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.03);
+}
+
+.generated-prompt {
+  background-color: #fffef9;
+  padding: 0.2rem;
+  margin-top: 0.2rem;
+  font-style: italic;
+  font-family: inherit;
+  font-size: 1rem;
+  text-align: center;
+  color: #3a3a3a;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.generated-prompt-text {
+  margin: 0;
+  padding-left: 0.5rem;
+  font-style: italic;
+  white-space: pre-wrap;
+}
+
+.spinner {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 3px solid #e6e2d3;
+  border-top: 3px solid #b75e35;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+.journal-header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 0 1.5rem;
+}
+
+.journal-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #b75e35;
+  text-align: center;
+  margin: 0 auto;
+  flex-grow: 1;
+}
+
+.entry-row {
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #eee5dc;
+}
+
+.entry-link-block {
+  text-decoration: none;
+  display: block;
+  padding: 0.5rem 0;
+  transition: background-color 0.2s ease;
+}
+
+.entry-link-block:hover {
+  background-color: #f9f5ef;
+  border-radius: 6px;
+}
+
+.entry-title {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.entry-meta {
+  margin-top: 0.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.entry-category {
+  font-size: 1.1rem;
+  color: #9e6f3e; /* Soft brown/terra cotta */
+  margin-bottom: 0.5rem;
+}
+
+.entry-date {
+  font-size: 0.8rem;
+  color: #999999;
+}
+.form-static {
+  padding: 0.5rem 0;
+  font-weight: bold;
+  color: #8a9a5b; 
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 1024px) {
+  .journal-month {
+    width: calc(50% - 1rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .journal-month {
+    width: 100%;
+  }
+}
+
+.month-label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #8a9a5b; /* soft olive green */
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+
+.month-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.month-column {
+  min-width: 250px;
+  max-width: 300px;
+}
+
+.month-title {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #7d5a63;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+}
+
+.month-entries {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #eee;
+}
+
+.month-label:hover {
+  text-decoration: underline;
+  color: #6e7f4d; /* darker olive */
+}
+
+.journal-month details[open] > summary.month-label {
+  color: #b75e35; /* terra cotta when expanded */
+}
+
+.journal-month details[open] {
+  padding-bottom: 1rem;
+}
+
+.journal-month:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+details[open] .month-label {
+  color: #b75e35;
+}
+
+.empty-month-message {
+  margin-bottom: 1rem;
+  color: #777;
+  font-style: italic;
+  display: block;
+}
+
+.journal-entry-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 1rem;
+}
+
+.entry-link {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #4b3b2a;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.entry-link:hover {
+  text-decoration: underline;
+  color: #b75e35;
+}
+/* Expands and scrolls the prompt box when shown */
+#prompt-field {
+  margin-top: 1rem;
+  display: none; /* hidden until button click */
+}
+
+/* scrollable prompt field */
+.scrollable-textarea {
+  resize: vertical;
+  overflow-y: auto;
+  min-height: 100px;
+  max-height: 200px;
+  width: 100%;
+  background-color: #fffef9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-family: inherit;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+/* Larger content field with scroll */
+.content-box {
+  min-height: 200px;
+  max-height: 400px;
+  resize: vertical;
+  overflow-y: auto;
+  width: 100%;
+  background-color: #fffef9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-family: inherit;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.journal-entry-title {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #8a9a5b;
+  font-family: 'Georgia', serif;
+}
+/* =============================
+   Footer
+   ============================= */
+.app-footer {
+  text-align: center;
+  padding: 1.5rem 0;
+  margin-top: 2rem;
+  color: #7d5a63;
+  font-size: 0.9rem;
+  border-top: 1px solid #e0dcd5;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+main {
+  flex: 1;
+}
+
+/* =============================
+   Form Styles
+   ============================= */
+.app-footer {
+.form-group {
+  margin-bottom: 1rem;
+}
+.add-link {
+  display: inline-block;
+  margin-left: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+}
+/* =============================
+   Garden Notes Styles
+   ============================= */
+ 
+.garden-title {
+  color: #8a9a5b;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.garden-notes-snippet {
+  color: #3a3a3a;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+   
+.garden-notes {
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.notes-full {
+  display: none;
+  margin-top: 0.5rem;
+}
+
+.notes-full.show {
+  display: block;
+}
+
+.read-toggle {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: #855b3f;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.read-toggle:hover {
+  text-decoration: underline;
+}
+.danger-zone {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: #fff3f0;
+  border: 1px solid #e0dcd5;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.danger-zone h2 {
+  color: #b75e35;
+  margin-bottom: 0.5rem;
+}
+
+.flash.notice {
+  background-color: #e0ffe0;
+  color: #155724;
+  padding: 1em;
+  border: 1px solid #c3e6cb;
+  margin-bottom: 1em;
+  border-radius: 8px;
+}
+
+.flash.alert {
+  background-color: #ffe0e0;
+  color: #721c24;
+  padding: 1em;
+  border: 1px solid #f5c6cb;
+  margin-bottom: 1em;
+  border-radius: 8px;
+}
+
+.progress-notes-section {
+  margin-top: 2rem;
+  background-color: #f9f6f0;
+  border: 1px solid #ddd3c2;
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.section-heading {
+  font-size: 1.4rem;
+  color: #6e4f2f;
+  margin-bottom: 1rem;
+}
+
+.progress-notes-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 1rem;
+}
+
+.progress-note-item {
+  background: #f8f5f0;
+  border: 1px solid #e0dcd5;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+.progress-notes-display {
+  background-color: #fdfaf6;
+  padding: 1rem;
+  border: 1px solid #e0dcd5;
+  border-radius: 12px;
+  margin-top: 2rem;
+}
+
+.note-list {
+  list-style: none;
+  padding: 0;
+}
+
+.note-item {
+  background-color: #fff;
+  border-left: 5px solid #a3b18a;
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+}
+
+.note-timestamp {
+  font-size: 0.9rem;
+  color: #6a6a6a;
+  margin-bottom: 0.25rem;
+}
+
+.no-notes {
+  font-style: italic;
+  color: #8c715a;
+}
+
+
+
+/* =============================
+   Form Styles
+   ============================= */
+
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-title {
+  text-align: center;
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+  color: #855b3f; 
+  font-family: 'Georgia', serif;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.form-select {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #fffef9;
+  font-family: inherit;
+  color: #855b3f;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04);
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg width='10' height='5' viewBox='0 0 10 5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%234b3b2a' d='M0 0l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 0.6rem;
+}
+
+/* =============================
+   🌍 Global Button Styles
+   ============================= */
+.btn {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+  font-family: inherit;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+input.btn,
+button.btn {
+  all: unset;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-family: inherit;
+  background-color: inherit; /* so variants work */
+  color: inherit;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+  .btn:hover {
+  opacity: 0.9;
+}
+
+.btn-small {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.875rem;
+  border-radius: 8px;
+}
+.btn-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* =============================
+    POM Button Variants
+   ============================= */
+
+/* Green = Primary action (Submit, Save, Confirm) */
+.green-btn,
+input.green-btn,
+button.green-btn {
+  background-color: #8a9a5b;
+  color: white;
+}
+
+.green-btn:hover,
+input.green-btn:hover,
+button.green-btn:hover {
+  background-color: #6e7f4d;
+}
+
+/* Brown = Secondary action (Back, Cancel) */
+.brown-btn,
+input.brown-btn,
+button.brown-btn {
+  background-color: #855b3f;
+  color: white;
+  
+}
+
+.brown-btn:hover,
+input.brown-btn:hover,
+button.brown-btn:hover {
+  background-color: #654321;
+}
+
+/* Terracotta = Accents (Add, Highlighted links, Extra buttons) */
+.terracotta-btn,
+input.terracotta-btn,
+button.terracotta-btn {
+  background-color: #b75e35;
+  color: white;
+}
+
+.terracotta-btn:hover,
+input.terracotta-btn:hover,
+button.terracotta-btn:hover {
+  background-color: #934526;
+}
+
+/* Red/Danger = Destructive (Delete) */
+.danger-btn,
+input.danger-btn,
+button.danger-btn {
+  background-color: #aa3a3a;
+  color: white;
+  margin-bottom: 0.75rem;
+}
+
+.danger-btn:hover,
+input.danger-btn:hover,
+button.danger-btn:hover {
+  background-color: #922b2b;
+}
+
+.garden-notes-btn {
+  width: 100%;
+  max-width: 200px;
+  text-align: center;
+}
+/* =============================
+   📓 Journal-Specific Buttons
+   ============================= */
+
+/* Button for navigating between months, or adding entries */
+.journal-nav-btn,
+.add-entry-btn {
+  background-color: #8a9a5b; /* Reuse green */
+  color: white;
+  font-weight: bold;
+  border-radius: 24px;
+  padding: 0.6rem 1.25rem;
+  font-size: 1rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.journal-nav-btn:hover,
+.add-entry-btn:hover {
+  background-color: #6e7f4d;
+}
+  .empty-state {
+  font-size: 1.2rem;
+  margin: 1rem 0;
+  text-align: center;
+  color: #555;
+}
+/* =============================
+   🌿 POM App: Responsive Styles
+   ============================= */
+   @media (max-width: 768px) {
+  .entry-row p {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .entry-date {
+    font-size: 0.75rem;
+    opacity: 0.6;
+  }
+
+  .entry-category {
+    font-size: 1.0rem;
+    color: #b75e35;
+  }
+}
+/* STACK JOURNAL ACCORDIONS ON MOBILE */
+@media screen and (max-width: 768px) {
+  .journal-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .journal-month {
+    width: 100%;
+  }
+
+  details summary.month-label {
+    cursor: pointer;
+    padding: 0.5rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #a04f1f;
+  }
+
+  .month-entries {
+    padding: 0.5rem 1rem;
+  }
+
+  .entry-link-block {
+    display: block;
+    padding: 0.5rem 0;
+  }
+}

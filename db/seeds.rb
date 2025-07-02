@@ -1,91 +1,107 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
-puts '🌱 Seeding categories...'
+puts "👤 Seeding user..."
+user = User.find_or_initialize_by(email: "tia@example.com")
+user.first_name = "Tia"
+user.last_name = "Anderson"
+user.password = "password"
+user.password_confirmation = "password"
+user.save!
 
-[ 'Life Wins', 'Troubled Times', 'Gratitude', 'Random Thoughts' ].each do |name|
-  Category.find_or_create_by!(name: name)
-  user = User.first || User.create!(
-  first_name: "Tia",
-  last_name: "Anderson",
-  email: "tia@example.com"
-)
+puts "🌿 Seeding garden..."
+garden = Garden.find_or_initialize_by(name: "Home Garden", location: "Backyard")
+garden.user = user
+garden.save!
 
-recipes = [
-  {
-    title: "Garlic Herb Salmon",
-    description: "Flaky salmon with a garlic herb butter sauce.",
-    ingredients: "Salmon fillets\nButter\nGarlic\nParsley\nLemon\nOld Bay seasoning",
-    instructions: "1. Preheat oven to 375°F.\n2. Melt butter with garlic and herbs.\n3. Pour over salmon and bake 20 minutes.",
-    user: user
-  },
-  {
-    title: "Mac & Cheese for the Littles",
-    description: "Kid-approved creamy mac and cheese with a crispy top.",
-    ingredients: "Macaroni\nCheddar cheese\nMilk\nButter\nBreadcrumbs",
-    instructions: "1. Cook macaroni.\n2. Make cheese sauce.\n3. Mix, top with crumbs, and bake at 350°F until bubbly.",
-    user: user
-  },
-  {
-    title: "Garden Veggie Stir Fry",
-    description: "A colorful medley of garden veggies sautéed to perfection.",
-    ingredients: "Bell peppers\nZucchini\nOnions\nSoy sauce\nGarlic\nOlive oil",
-    instructions: "1. Slice veggies.\n2. Sauté in oil with garlic.\n3. Add soy sauce and stir until crisp-tender.",
-    user: user
-  }
+puts "🪴 Seeding plants and plantings..."
+plants_data = [
+  { name: "Roma Tomato", notes: "Needs support and regular pruning.", planted_on: Date.new(2025, 3, 5) },
+  { name: "Green Grapes", notes: "Train vines on a sturdy trellis.", planted_on: Date.new(2024, 11, 1) },
+  { name: "Yukon Gold Potatoes", notes: "Mound soil as plants grow.", planted_on: Date.new(2025, 3, 15) },
+  { name: "Boston Pickling Cucumbers", notes: "Great for vertical growth.", planted_on: Date.new(2025, 4, 1) },
+  { name: "Luffa Gourd", notes: "Trellis required. Long season.", planted_on: Date.new(2025, 4, 12) },
+  { name: "Black Beauty Zucchini", notes: "Watch for vine borers.", planted_on: Date.new(2025, 5, 10) },
+  { name: "Yellow Crookneck Squash", notes: "Harvest young for best flavor.", planted_on: Date.new(2025, 5, 12) },
+  { name: "Sriracha Peppers", notes: "Start indoors, transplant after frost.", planted_on: Date.new(2025, 4, 15) },
+  { name: "Red Bell Peppers", notes: "Mulch to retain moisture.", planted_on: Date.new(2025, 4, 18) },
+  { name: "Raspberries", notes: "Perennial. Prune after fruiting.", planted_on: Date.new(2024, 12, 5) }
 ]
 
-recipes.each do |data|
-  Recipe.find_or_create_by!(title: data[:title], user: user) do |recipe|
-    recipe.description = data[:description]
-    recipe.ingredients = data[:ingredients]
-    recipe.instructions = data[:instructions]
+plants_data.each do |data|
+  plant = Plant.find_or_create_by!(name: data[:name])
+  plant.update!(notes: data[:notes]) if plant.notes.blank?
 
-# Seed Garden and Plants
-user = User.first || User.create!(first_name: "Tia", last_name: "Anderson", email: "tia@example.com")
-
-garden = Garden.find_or_create_by!(name: "Backyard", location: "Fayetteville, NC", notes: "Main garden space", user: user)
-
-plants = [
-  { name: "Tomato", variety: "Roma", notes: "Needs trellising" },
-  { name: "Bell Pepper", variety: "California Wonder", notes: "Loves sun" },
-  { name: "Cucumber", variety: "Straight Eight", notes: "Vine needs support, fertilize heavily" }
-]
-
-plants.each do |attrs|
-  Plant.find_or_create_by!(
-    name: attrs[:name],
-    variety: attrs[:variety],
-    notes: attrs[:notes],
-    planted_on: Date.today - rand(1..20).days,
-    last_watered_on: Date.today - rand(1..3).days,
-    last_fertilized_on: Date.today - rand(5..10).days,
-    harvested_on: nil,
-    garden: garden
-  )
-  puts "🌿 Seeding plantings..."
-
-user = User.first
-garden = Garden.first
-plants = Plant.limit(3)
-
-plants.each_with_index do |plant, i|
-  Planting.find_or_create_by!(
+  Planting.create!(
+    user: user,
     garden: garden,
     plant: plant,
-    location: "Bed #{i + 1}",
-    date_planted: Date.today - (i * 3).days,
-    season: "Spring",
-    notes: "Planted #{plant.name} with love."
+    date_planted: data[:planted_on],
+    notes: data[:notes]
   )
 end
+
+
+puts "🧘🏽‍♀️ Seeding journal categories..."
+categories = [ 'Life Wins', 'Troubled Times', 'Gratitude', 'Random Thoughts' ].map do |name|
+  Category.find_or_create_by!(name: name)
 end
+
+puts '📓 Clearing old journal entries...'
+user.journal_entries.destroy_all
+
+puts '📓 Seeding handcrafted journal entries...'
+custom_entries = [
+  [ "Sprouts of Joy", "My garden beds are thriving and it's such a peaceful sight.", "Life Wins", Date.new(2025, 3, 10) ],
+  [ "Unsettled Soil", "Felt unsure about the future today.", "Troubled Times", Date.new(2025, 3, 12) ],
+  [ "Heavy Hearts", "Today was hard. I felt overwhelmed by everything on my plate.", "Troubled Times", Date.new(2025, 3, 31) ],
+  [ "Silent Showers", "The rain helped me cry quietly today.", "Random Thoughts", Date.new(2025, 4, 2) ],
+  [ "Dewy Reflections", "The morning dew reminded me to slow down.", "Random Thoughts", Date.new(2025, 4, 28) ],
+  [ "Hope in the Haze", "The fog gave me space to reflect.", "Gratitude", Date.new(2025, 4, 30) ],
+  [ "Grateful Roots", "I’m grateful for the resilience I see in my garden and myself.", "Gratitude", Date.new(2025, 5, 6) ],
+  [ "Sunny Strides", "Took a walk and felt the sun on my shoulders.", "Life Wins", Date.new(2025, 5, 5) ],
+  [ "Inner Bloom", "I felt more like myself today.", "Life Wins", Date.new(2025, 5, 7) ],
+  [ "Petals & Promises", "Seeing the flowers bloom gives me hope for what's ahead.", "Life Wins", Date.new(2025, 5, 30) ],
+  [ "Sunset Stillness", "Watched the sunset in stillness and felt peace.", "Gratitude", Date.new(2025, 5, 26) ],
+  [ "Roots & Ruminations", "Thought about the legacy I’m growing.", "Random Thoughts", Date.new(2025, 5, 28) ]
+]
+
+custom_entries.each do |title, content, category_name, date|
+  JournalEntry.create!(
+    title: title,
+    content: content,
+    created_at: date.to_time.beginning_of_day,
+    updated_at: date.to_time.beginning_of_day,
+    user: user,
+    category: Category.find_by!(name: category_name)
+  )
+end
+
+puts "🌦️ Seeding extra journal entries for layout testing..."
+
+seeded_titles = [
+  "Morning Calm", "Fresh Start", "Restless Energy", "Quiet Wins", "Simple Joys",
+  "Late Bloom", "Cloudy Clarity", "Weekend Reset", "Moments of Grace", "Still Growing"
+]
+
+start_month = Date.new(2024, 10, 1)
+end_month   = Date.new(2025, 6, 1)
+
+months = (start_month..end_month).select { |d| d.day == 1 }
+
+months.each_with_index do |month_start, i|
+  next if i.odd?  # Skip every other month for visual gaps
+
+  rand(2..3).times do |entry_num|
+    date = month_start + rand(0..14).days
+    unique_title = "#{seeded_titles.sample} #{date.strftime('%b %d')}"
+    JournalEntry.find_or_create_by!(
+      title: unique_title,
+      created_at: date.to_time.beginning_of_day,
+      user: user
+    ) do |entry|
+      entry.content = "This journal entry is auto-seeded for layout and display testing."
+      entry.updated_at = date.to_time.beginning_of_day
+      entry.category = categories.sample
+    end
   end
 end
-end
+
+puts "🌱 Seeding Complete!"

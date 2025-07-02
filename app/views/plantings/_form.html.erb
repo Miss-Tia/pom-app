@@ -1,0 +1,58 @@
+<div class="form-container">
+  <%= form_with(model: (@planting.persisted? ? @planting : [@garden, @planting]), local: true) do |form| %>
+    <% if @planting.errors.any? %>
+      <div class="form-errors">
+        <h2><%= pluralize(@planting.errors.count, "error") %> prevented this planting from being saved:</h2>
+        <ul>
+          <% @planting.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <h2 class="form-title"><%= @planting.persisted? ? "✏️ Edit Planting" : "🌱 New Planting" %></h2>
+
+    <!-- Conditional Plant Field -->
+    <% if form.object.persisted? %>
+      <div class="form-group">
+        <%= form.label :plant_id, "Plant" %>
+        <div class="form-input static-field"><%= @planting.plant.name %></div>
+        <%= form.hidden_field :plant_id, value: @planting.plant_id %>
+      </div>
+    <% else %>
+      <div class="form-group">
+        <%= form.label :plant_id %>
+        <%= form.collection_select :plant_id, plants, :id, :name, { prompt: "Select a plant" }, class: "form-input" %>
+    
+    <div class="helper-text">
+    <%= link_to "Can't find your plant? Add one!", new_plant_path(garden_id: @garden.id), class: "btn small-btn brown-btn inline-btn" %>
+  </div>
+    <% end %>
+</div>
+
+    <!-- Date Field -->
+    <div class="form-group">
+      <%= form.label :date_planted %>
+      <%= form.date_field :date_planted, value: @planting.date_planted || Date.today, class: "form-input" %>
+    </div>
+
+    <!-- Season Field -->
+    <div class="form-group">
+      <%= form.label :season %>
+      <%= form.select :season, ["Spring", "Summer", "Fall", "Winter"], { prompt: "Select a season" }, class: "form-select" %>
+    </div>
+
+    <!-- Notes Field -->
+    <div class="form-group">
+      <%= form.label :notes %>
+      <%= form.text_area :notes, rows: 5, class: "form-textarea" %>
+    </div>
+
+    <!-- Actions -->
+    <div class="form-actions center">
+      <%= form.submit "Save Planting", class: "btn green-btn" %>
+      <%= link_to "Cancel", garden_plantings_path(@garden), class: "btn brown-btn" %>
+    </div>
+  <% end %>
+</div>

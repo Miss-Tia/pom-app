@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_13_053329) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_21_005523) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_catalog.plpgsql"
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -35,6 +38,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_13_053329) do
     t.integer "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "prompt"
     t.index ["category_id"], name: "index_journal_entries_on_category_id"
     t.index ["user_id"], name: "index_journal_entries_on_user_id"
   end
@@ -48,8 +52,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_13_053329) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "location"
+    t.integer "user_id", null: false
+    t.json "progress_notes", default: []
     t.index ["garden_id"], name: "index_plantings_on_garden_id"
     t.index ["plant_id"], name: "index_plantings_on_plant_id"
+    t.index ["user_id"], name: "index_plantings_on_user_id"
   end
 
   create_table "plants", force: :cascade do |t|
@@ -60,10 +67,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_13_053329) do
     t.date "last_watered_on"
     t.date "last_fertilized_on"
     t.date "harvested_on"
-    t.integer "garden_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["garden_id"], name: "index_plants_on_garden_id"
+    t.integer "days_to_harvest"
+    t.integer "user_id", default: 1, null: false
+    t.index ["user_id"], name: "index_plants_on_user_id"
   end
 
   create_table "recipes", force: :cascade do |t|
@@ -86,6 +94,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_13_053329) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+    t.string "password_digest"
   end
 
   add_foreign_key "gardens", "users"
@@ -93,7 +102,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_13_053329) do
   add_foreign_key "journal_entries", "users"
   add_foreign_key "plantings", "gardens"
   add_foreign_key "plantings", "plants"
-  add_foreign_key "plants", "gardens"
+  add_foreign_key "plantings", "users"
+  add_foreign_key "plants", "users"
   add_foreign_key "recipes", "journal_entries"
   add_foreign_key "recipes", "users"
 end

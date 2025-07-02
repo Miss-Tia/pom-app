@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h1><%= @planting.plant.name %></h1>
 
 <p><strong>Location:</strong> <%= @planting.garden.name %></p>
@@ -9,3 +10,62 @@
 <% end %>
 
 <p><%= link_to "Back to all plantings", plantings_path %></p>
+=======
+<div class="dashboard">
+  <h1 class="entry-title"><%= @planting.plant.name %></h1>
+
+  <p><strong>Location:</strong> <%= @planting.garden.name %></p>
+  <p><strong>Date Planted:</strong> <%= @planting.date_planted.strftime("%B %d, %Y") %></p>
+  <p><strong>Season:</strong> <%= @planting.season %></p>
+
+  <% if @planting.notes.present? %>
+    <div class="planting-notes">
+      <h3>📝 General Notes</h3>
+      <p><%= simple_format(@planting.notes) %></p>
+    </div>
+  <% end %>
+
+  <div class="form-actions center">
+    <%= link_to "✏️ Edit general notes", edit_planting_path(@planting), class: "btn green-btn" %>
+    <%= link_to "↩️ Back to plantings", garden_plantings_path(@planting.garden), class: "btn brown-btn" %>
+  </div>
+
+  <div class="progress-notes-section">
+    <h2 class="section-heading">📓 Add New Progress Notes</h2>
+    <%= render partial: "plantings/progress_note_form", locals: { planting: @planting } %>
+  </div>
+
+  <div class="progress-notes-section">
+    <h2 class="section-heading">🌿 Previous Progress Notes</h2>
+
+    <!-- 🔥 Add this data tag for JS -->
+    <div id="progress-notes-data" style="display:none;">
+      <%= raw @planting.progress_notes.reverse.to_json %>
+    </div>
+
+    <% if @planting.progress_notes.any? %>
+      <ul id="progress-notes-list" class="note-list">
+        <% @planting.progress_notes.reverse.first(5).each_with_index do |note, i| %>
+          <%= render partial: "plantings/note", locals: { note: note.merge("index" => i) } %>
+        <% end %>
+      </ul>
+
+      <% if @planting.progress_notes.size > 5 %>
+        <div class="form-actions center">
+          <button id="load-more-notes" class="btn terracotta-btn">Load More Notes</button>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="no-notes">No progress notes yet.</p>
+    <% end %>
+  </div>
+
+  <div class="danger-zone">
+    <%= button_to "🗑️ Delete Planting", planting_path(@planting),
+        method: :delete,
+        data: { confirm: "Are you sure you want to delete this planting? This cannot be undone." },
+        class: "btn danger-btn" %>
+    <p>This action cannot be undone. Please confirm before deleting this planting.</p>
+  </div>
+</div>
+>>>>>>> b8467df9d29c21905f86a06c2840c65424c9a880

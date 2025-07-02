@@ -1,0 +1,105 @@
+<div class="form-container">
+  <h1 class="form-title">
+    <%= journal_entry.persisted? ? "✏️ Edit Journal Entry" : "📝 New Journal Entry" %>
+  </h1>
+
+  <%= form_with model: journal_entry, local: true do |form| %>
+    <% if journal_entry.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(journal_entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
+        <ul>
+          <% journal_entry.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+   <!-- Category Field -->
+<% if journal_entry.persisted? %>
+  <div class="form-group">
+    <%= form.label :category_id, "Category" %>
+    <p class="form-static"><%= Category.find(journal_entry.category_id).name %></p>
+    <%= form.hidden_field :category_id %>
+  </div>
+<% else %>
+  <div class="form-group">
+    <%= form.label :category_id, "Category" %>
+    <%= form.collection_select :category_id, Category.all, :id, :name,
+      { prompt: "Select a category" },
+      class: "form-select #{'locked' if journal_entry.category&.name == 'Generated Prompt'}",
+      data: (journal_entry.category&.name == 'Generated Prompt' ? { locked: true } : {}) %>
+  </div>
+<% end %>
+
+
+
+    <!-- Title Field -->
+    <div class="form-group">
+      <%= form.label :title %>
+      <%= form.text_field :title, class: "form-input" %>
+    </div>
+
+    <!-- Prompt Generator -->
+<% if journal_entry.new_record? %>
+  <div class="form-group" data-controller="prompt">
+    <% unless journal_entry.prompt.present? %>
+      <button
+        type="button"
+        id="generate-prompt-btn"
+        class="btn terracotta-btn"
+        data-action="click->prompt#generate"
+        data-prompt-target="generateButton">
+        ✨ Generate Prompt
+      </button>
+
+      <!-- Spinner -->
+      <div id="prompt-spinner" class="spinner hidden" aria-hidden="true" data-prompt-target="spinner"></div>
+    <% end %>
+
+    <!-- Always include the output block, even if it’s initially empty -->
+    <div class="generated-prompt-box">
+    <blockquote
+      id="prompt-display"
+      class="generated-prompt"
+      data-prompt-target="output"
+      style="<%= journal_entry.prompt.present? ? 'display: block;' : 'display: none;' %>">
+      <%= journal_entry.prompt %>
+    </blockquote>
+    </div>
+    <!-- Hidden field for saving the prompt -->
+    <%= form.hidden_field :prompt, id: "journal_entry_prompt" %>
+  
+<% else %>
+  <!-- On edit, show the prompt without the generator -->
+  <% if journal_entry.prompt.present? %>
+  <div class="generated-prompt-box">
+    <div class="form-group">
+      <blockquote class="generated-prompt"><%= journal_entry.prompt %></blockquote>
+      <%= form.hidden_field :prompt %>
+    </div>
+  </div>
+  <% end %>
+<% end %>
+
+    <!-- Content Field -->
+    <div class="form-group">
+      <%= form.label :content %>
+      <%= form.text_area :content, rows: 10, class: "form-textarea scrollable-textarea" %>
+    </div>
+  
+    <!-- Save Button -->
+    <div class="form-actions center">
+      <%= form.submit "Save Entry", class: "btn green-btn" %>
+    <% if journal_entry.persisted? %>
+    <%= link_to "Cancel", journal_entry_path(journal_entry), class: "btn brown-btn" %>
+  <% else %>
+    <%= link_to "← Back to Journal", journal_entries_path, class: "btn brown-btn" %>
+  <% end %>
+</div>
+
+  <% end %>
+  
+  
+  
+

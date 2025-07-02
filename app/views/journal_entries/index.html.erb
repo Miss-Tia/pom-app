@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h1>My Journal</h1>
 
 <% if @journal_entries.any? %>
@@ -13,3 +14,53 @@
 <% else %>
   <p>You haven't added any journal entries yet.</p>
 <% end %>
+=======
+<div class="dashboard">
+  <div class="journal-header-container">
+    <%= link_to "🏠 Dashboard", dashboard_path(current_user), class: "btn brown-btn" %>
+
+    <h1 class="journal-title">My Journal Entries</h1>
+
+    <%= link_to "➕ New Entry", new_journal_entry_path, class: "btn green-btn right" %>
+  </div>
+
+  <div class="journal-grid">
+    <% @entries_by_month.each do |month, entries| %>
+      <div class="journal-month">
+        <details <%= "open" if @entries_by_month.keys.index(month) < 3 %>>
+          <summary class="month-label"><%= month.strftime("%B %Y") %></summary>
+
+          <div class="month-entries">
+            <% if entries.any? %>
+              <% entries.each do |entry| %>
+                <div class="entry-row">
+                  <%= link_to journal_entry_path(entry), class: "entry-link-block" do %>
+                    <p class="entry-title link-highlight"><%= entry.title %></p>
+
+                    <% if entry.category.present? %>
+                      <div class="entry-meta">
+                        <span class="entry-category"><%= entry.category.name %></span>
+                        <span class="entry-date"><%= entry.created_at.strftime('%B %d, %Y') %></span>
+                      </div>
+                    <% else %>
+                      <p class="entry-date"><%= entry.created_at.strftime('%B %d, %Y') %></p>
+                    <% end %>
+                  <% end %>
+                </div>
+              <% end %>
+            <% else %>
+              <p class="empty-month-message">No entries this month.</p>
+
+              <% if month >= Time.current.beginning_of_month %>
+                <%= link_to new_journal_entry_path, class: "btn add-entry-btn" do %>
+                  ➕ New Entry
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </details>
+      </div>
+    <% end %>
+  </div>
+</div>
+>>>>>>> b8467df9d29c21905f86a06c2840c65424c9a880

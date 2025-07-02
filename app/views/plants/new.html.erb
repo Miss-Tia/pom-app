@@ -1,0 +1,41 @@
+<div class="form-wrapper">
+  <div class="form-container">
+    <h1 class="form-title">🌿 Add a New Plant</h1>
+
+    <%= form_with model: @plant, local: true do |form| %>
+      <% if @plant.errors.any? %>
+        <div class="form-errors">
+          <h2><%= pluralize(@plant.errors.count, "error") %> prevented this plant from being saved:</h2>
+          <ul>
+            <% @plant.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="form-group">
+        <%= form.label :name %>
+        <%= form.text_field :name, class: "form-input" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :days_to_harvest, "Days to Harvest (optional)" %>
+        <%= form.number_field :days_to_harvest, class: "form-input" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :notes, "Notes (optional)" %>
+        <%= form.text_area :notes, rows: 5, class: "form-textarea" %>
+      </div>
+
+      <%# Required garden_id in hidden field %>
+      <%= hidden_field_tag :garden_id, @garden.id %>
+
+      <div class="form-actions center">
+        <%= form.submit "Add Plant", class: "btn green-btn" %>
+        <%= link_to "Cancel", garden_plantings_path(@garden), class: "btn brown-btn" %>
+      </div>
+    <% end %>
+  </div>
+</div>
