@@ -55,35 +55,31 @@ class PlantingsController < ApplicationController
   end
 
   def add_progress_note
-  @planting = Planting.find(params[:id])
+    @planting = Planting.find(params[:id])
 
-  # Add new notes at the top
-  new_note = {
-    "content" => params[:content],
-    "timestamp" => Time.current
-  }
+    # Add new notes at the top
+    new_note = {
+      "content" => params[:content],
+      "timestamp" => Time.current
+    }
 
-  @planting.progress_notes.unshift(new_note)
-  @planting.save
+    @planting.progress_notes.unshift(new_note)
+    @planting.save
 
-  # Add the index manually for rendering
-  note_with_index = new_note.merge("index" => 0)
+    # Add the index manually for rendering
+    note_with_index = new_note.merge("index" => 0)
 
-  respond_to do |format|
-    format.turbo_stream do
-      render turbo_stream: turbo_stream.prepend(
-        "progress-notes-list",
-        partial: "plantings/note",
-        locals: { note: note_with_index }
-      )
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.prepend(
+          "progress-notes-list",
+          partial: "plantings/note",
+          locals: { note: note_with_index }
+        )
+      end
+      format.html { redirect_to planting_path(@planting), notice: "Note added!" }
     end
-    format.html { redirect_to planting_path(@planting), notice: "Note added!" }
   end
-  end
-
-
-
-
   private
 
   def set_planting

@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-<h1><%= @planting.plant.name %></h1>
-
-<p><strong>Location:</strong> <%= @planting.garden.name %></p>
-<p><strong>Date Planted:</strong> <%= @planting.date_planted.strftime("%B %d, %Y") %></p>
-<p><strong>Season:</strong> <%= @planting.season %></p>
-
-<% if @planting.notes.present? %>
-  <p><strong>Notes:</strong> <%= @planting.notes %></p>
-<% end %>
-
-<p><%= link_to "Back to all plantings", plantings_path %></p>
-=======
 <div class="dashboard">
   <h1 class="entry-title"><%= @planting.plant.name %></h1>
 
@@ -68,4 +55,3 @@
     <p>This action cannot be undone. Please confirm before deleting this planting.</p>
   </div>
 </div>
->>>>>>> b8467df9d29c21905f86a06c2840c65424c9a880

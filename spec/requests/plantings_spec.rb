@@ -1,16 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "Plantings", type: :request do
-<<<<<<< HEAD
-  let(:user) { User.first || User.create!(first_name: "Tia", last_name: "Anderson", email: "tia@example.com") }
-  let(:garden) { Garden.first || Garden.create!(name: "Test Garden", location: "Backyard", user: user) }
-  let(:plant) { Plant.first || Plant.create!(name: "Tomato", variety: "Cherry", garden: garden) }
-
-  before do
-    Planting.create!(
-      garden: garden,
-      plant: plant,
-=======
   let!(:user) { User.first || User.create!(first_name: "Tia", last_name: "Anderson", email: "tia@example.com", password: "password", password_confirmation: "password") }
   let!(:garden) { Garden.first || Garden.create!(name: "Test Garden", location: "Backyard", user: user) }
   let!(:plant) { Plant.first || Plant.create!(name: "Tomato", variety: "Cherry", user: user) }
@@ -67,27 +57,10 @@ RSpec.describe "Plantings", type: :request do
       garden: garden,
       plant: plant,
       user: user,
->>>>>>> b8467df9d29c21905f86a06c2840c65424c9a880
       date_planted: Date.today,
       season: "Spring",
       notes: "Test notes"
     )
-<<<<<<< HEAD
-  end
-
-  describe "GET /plantings" do
-    it "returns http success" do
-      get plantings_path
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET /plantings/:id" do
-    it "returns http success" do
-      planting = Planting.first
-      get planting_path(planting)
-      expect(response).to have_http_status(:success)
-=======
 
     get garden_plantings_path(garden)
     expect(response).to have_http_status(:success)
@@ -188,7 +161,6 @@ end
           expect(response.body).to include("Date planted can&#39;t be blank").or include("can&#39;t be blank")
         end
       end
->>>>>>> b8467df9d29c21905f86a06c2840c65424c9a880
     end
   end
 end

@@ -1,8 +1,6 @@
 class Planting < ApplicationRecord
   belongs_to :plant
   belongs_to :garden
-<<<<<<< HEAD
-=======
   belongs_to :user
 
   validates :plant_id, presence: true
@@ -32,5 +30,4 @@ def add_progress_note(content)
   self.progress_notes << timestamped_note
   save
 end
->>>>>>> b8467df9d29c21905f86a06c2840c65424c9a880
 end
