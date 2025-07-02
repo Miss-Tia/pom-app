@@ -1,12 +1,4 @@
 class PlantingsController < ApplicationController
-<<<<<<< HEAD
-  def index
-    @plantings = Planting.includes(:plant, :garden)
-  end
-
-  def show
-    @planting = Planting.find(params[:id])
-=======
   before_action :require_login
   before_action :set_planting, only: [ :show, :edit, :update, :destroy, :add_progress_note ]
   before_action :set_garden, only: [ :index, :new, :create ]
@@ -104,6 +96,5 @@ class PlantingsController < ApplicationController
 
   def planting_params
     params.require(:planting).permit(:plant_id, :garden_id, :date_planted, :season, :notes)
->>>>>>> b8467df9d29c21905f86a06c2840c65424c9a880
   end
 end
