@@ -56,17 +56,17 @@ class PlantingsController < ApplicationController
 
   def add_progress_note
     @planting = Planting.find(params[:id])
+    content = params[:content].to_s.strip
 
-    # Add new notes at the top
-    new_note = {
-      "content" => params[:content],
-      "timestamp" => Time.current
-    }
+    if content.blank?
+      head :unprocessable_entity
+      return
+    end
 
+    new_note = { "content" => content, "timestamp" => Time.current }
     @planting.progress_notes.unshift(new_note)
     @planting.save
 
-    # Add the index manually for rendering
     note_with_index = new_note.merge("index" => 0)
 
     respond_to do |format|
