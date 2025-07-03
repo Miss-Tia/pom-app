@@ -31,11 +31,13 @@
     </div>
 
     <% if @planting.progress_notes.any? %>
-      <ul id="progress-notes-list" class="note-list">
-        <% @planting.progress_notes.reverse.first(5).each_with_index do |note, i| %>
-          <%= render partial: "plantings/note", locals: { note: note.merge("index" => i) } %>
-        <% end %>
-      </ul>
+      <%= turbo_frame_tag "progress_notes_frame" do %>
+  <ul id="progress-notes-list" class="note-list">
+    <% @planting.progress_notes.reverse.first(5).each_with_index do |note, i| %>
+      <%= render partial: "plantings/note", locals: { note: note.merge("index" => i) } %>
+    <% end %>
+  </ul>
+<% end %>
 
       <% if @planting.progress_notes.size > 5 %>
         <div class="form-actions center">
