@@ -16,8 +16,7 @@ Features
 
 Tech
 - Ruby on Rails 8.0.2
-- SQLite3 (default in development)
-- PostgreSQL (planned for production deployment)
+- PostgreSQL 
 - Turbo / Hotwire
 - StimulusJS (custom controllers for prompt generation + timestamp formatting)
 - RSpec + FactoryBot + Faker
@@ -28,26 +27,7 @@ Tests
 - Validations and model behavior tested with RSpec
 - Full CRUD coverage across journal entries, plantings, and gardens.
 
-Setup Instructions:
-
-1. Clone the repo  
-   `git clone https://github.com/your-username/pom-app.git && cd pom-app`
-
-2. Install dependencies  
-   `bundle install && yarn install`
-
-3. Set up the database  
-   `rails db:create db:migrate db:seed`
-
-4. Set your OpenAI API key  
-   Create a `.env` file and add:  
-   OPENAI_API_KEY=your_key_here
-
-5. Run the server  
-   `bin/dev` (or `rails s` if you're not using foreman)
-
-🗒️ Note: (6/24/25 )This app will be deployed with a web address soon, so no API key will be needed for AI features! I’ll update this README when it’s live.
-
+URL: https://pom-app.onrender.com/
 
 What I Learned:
 - How to build and test full CRUD Rails resources
