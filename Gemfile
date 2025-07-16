@@ -31,7 +31,7 @@ gem "solid_queue"
 # gem "solid_cable"
 gem "dotenv-rails"
 gem "http"
-gem "openai", "~> 0.9.0"
+gem "openai", "~> 0.13.1"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
